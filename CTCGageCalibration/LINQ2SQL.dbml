@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TC_Report" Class="LINQ2SQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SVRSQLPROD;Initial Catalog=TC_Report;Persist Security Info=True;User ID=SQLSHOP;Connect Timeout=60" SettingsObjectName="CTCGageCalibration.My.MySettings" SettingsPropertyName="TestCenterrDataSet" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblGageCalLog" Member="tblGageCalLogs">
+    <Type Name="tblGageCalLog">
+      <Column Name="CalLogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PerformedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CalDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="CalNotes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PassFail" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGageCalMaster" Member="tblGageCalMasters">
+    <Type Name="tblGageCalMaster">
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Manufacturer" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Model_Serial" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Details_Size" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Accuracy" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Location_Assignee" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Cal_Cycle" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cal_Instructions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="GageNotes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LocEntityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGageCalRejctAction" Member="tblGageCalRejctActions">
+    <Type Name="tblGageCalRejctAction">
+      <Column Name="RjctActID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CalLogID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrevCalDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsageLocation" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="UsageDescription" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="ActionDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="GageDisposition" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EffectiveActionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ReviewedApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ReviewedApprovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubmittedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReqsWhereUsed" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEntities" Member="tblEntities">
+    <Type Name="tblEntity">
+      <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EntityType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EntityName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EntityNotes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="EntityActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EntitySortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EntityGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUsers" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Requestor" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TestTech" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Admin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TaskAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FirstNameAlias" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="LastInstallDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastInstallVer" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_GageCalsByReqTestDates" Member="v_GageCalsByReqTestDates">
+    <Type Name="v_GageCalsByReqTestDate">
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="ID" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Cal_Cycle" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CalDateStart" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CalDateEnd" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TestStart" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="TestEnd" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="PassFail" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_GageCalLog" Member="v_GageCalLogs">
+    <Type Name="v_GageCalLog">
+      <Column Name="CalLogID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="PerformedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CalDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="CalNotes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PassFail" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NextDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_GageCalMaster" Member="v_GageCalMasters">
+    <Type Name="v_GageCalMaster">
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Manufacturer" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Model_Serial" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Details_Size" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Accuracy" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Location_Assignee" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Cal_Cycle" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cal_Instructions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="GageNotes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastCal" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IsDue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Today" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSettings" Member="tblSettings">
+    <Type Name="tblSetting">
+      <Column Name="SettingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SettingName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SettingValue" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SettingDescript" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Encrypted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
