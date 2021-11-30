@@ -96,6 +96,7 @@ Partial Class FrmValidaCriteria
         Me.DgvGageValdCrit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgvGageValdCrit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CritID, Me.GageTypeDesc, Me.CriteriaSet, Me.CriteriaDesc, Me.ScaleDesc, Me.TargetValue, Me.TolType, Me.UpperLimit, Me.LowerLimit})
         Me.DgvGageValdCrit.DataSource = Me.TblGageValdCritBindingSource
+        Me.DgvGageValdCrit.Enabled = False
         Me.DgvGageValdCrit.Location = New System.Drawing.Point(24, 122)
         Me.DgvGageValdCrit.Name = "DgvGageValdCrit"
         Me.DgvGageValdCrit.Size = New System.Drawing.Size(823, 300)

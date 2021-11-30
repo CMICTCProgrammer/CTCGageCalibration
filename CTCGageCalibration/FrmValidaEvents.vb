@@ -49,6 +49,7 @@ Public Class FrmValidaEvents
     Dim sPastDate As String
     Dim sPrinter As String = DefaultPrinterName()
     Dim sCritDesc As String
+    Dim sGagesUsedList As String
 
     Private Sub FrmValidaEvents_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -829,10 +830,27 @@ Public Class FrmValidaEvents
 
     Public Sub ChkGagesUsed(EvntKy As Integer)
         Dim iGagesUsed As Integer
+        Dim iGageUCtr As Integer
+
+        sGagesUsedList = ""
+        iGageUCtr = 0
 
         Dim GagesUsed = From TblGageValdGagesUsed In db.TblGageValdGagesUseds
                         Where TblGageValdGagesUsed.EventKey = EvntKy
+                        Select TblGageValdGagesUsed.GageID
         iGagesUsed = GagesUsed.Count
+        If iGagesUsed > 0 Then
+            For Each GU In GagesUsed
+                If iGageUCtr = 0 Then
+                    sGagesUsedList = GU
+                Else
+                    sGagesUsedList = sGagesUsedList & "," & vbCrLf & GU
+                End If
+                iGageUCtr += 1
+            Next
+        Else
+            sGagesUsedList = "(None)"
+        End If
 
         If iGagesUsed = 0 Then
             LblGageValCnt.Text = "Currently there are no gages listed"
@@ -1019,6 +1037,8 @@ Public Class FrmValidaEvents
                 HandleRptParams(rptValdCert, "RPHdrLbl" & iXCtr, "")
             End If
         Next
+
+        HandleRptParams(rptValdCert, "RPHdrGgsUsd", sGagesUsedList)
 
     End Sub
 

@@ -15,6 +15,7 @@
     Dim DcLL As Decimal
     Dim iColCnt As Integer
     Dim iXColCnt As Integer
+    Dim sCritMode As String
 
     Private Sub FrmAddEditValidation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim IColCnt As Integer
@@ -33,7 +34,7 @@
         Next
 
         CboCritSet.Text = ""
-
+        sCritMode = ""
         CboGageType.Items.Clear()
         'Create items for CboCritSet
         Dim cboGTyps = From tblGageCalMaster In db.tblGageCalMasters
@@ -145,7 +146,10 @@
                                  MsgBoxStyle.YesNo, "Not Listed")
                 If msgRslt = MsgBoxResult.Yes Then
                     SetDGVCritDfltr()
+                    sCritMode = "New"
+                    BtnCopyCrit.Visible = False
                 Else
+                    sCritMode = ""
                     CboCritSet.Text = ""
                 End If
             End If
@@ -168,20 +172,25 @@
         'Set default for CriteriaSet column
         iTxtColID = DgvGageValdCrit.Columns.IndexOf(DgvGageValdCrit.Columns("CriteriaSet"))
         TxtCol = DgvGageValdCrit.Columns.Item(iTxtColID)
-        TxtCol.DefaultCellStyle.NullValue = CboCritSet.Text
+        'DgvGageValdCrit.Rows(DgvGageValdCrit.CurrentRow.Index).Cells(iTxtColID).Value = CboCritSet.Text
+        'TxtCol.DefaultCellStyle.NullValue = CboCritSet.Text
         UpdateFltr(CboCritSet.Text)
 
     End Sub
 
     Private Sub CboCritSet_TextChanged(sender As Object, e As EventArgs) Handles CboCritSet.TextChanged
         If CboCritSet.Text <> "" Then
+            DgvGageValdCrit.Enabled = True
             LblExtraColNote.Visible = True
             BtnExtraColumns.Visible = True
-            BtnCopyCrit.Visible = True
+            If sCritMode <> "New" Then
+                BtnCopyCrit.Visible = True
+            End If
             ListVwExtCols.Items.Clear()
             ListVwExtCols.Refresh()
             ChkExtraCols()
         Else
+            DgvGageValdCrit.Enabled = False
             LblExtraColNote.Visible = False
             BtnExtraColumns.Visible = False
             BtnCopyCrit.Visible = False
@@ -234,6 +243,7 @@
         ListVwExtCols.Refresh()
 
     End Sub
+
     Private Sub UpdateFltr(sFilter)
         sFltr = "CriteriaSet='" & sFilter & "'"
         TblGageValdCritBindingSource.Filter = sFltr
