@@ -1,7 +1,8 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Security.Cryptography
 Imports System.IO
 Imports System.Text
+Imports System.Security.Cryptography
+Imports Microsoft.Reporting.WinForms
 
 Module modVBCode
 
@@ -10,13 +11,15 @@ Module modVBCode
     Dim sSQLVals As String
     Dim sSelectedFolder As String
     Dim blnFolderCancel As Boolean
+    Dim iCmdTO As Integer = 120
 
-    Public Sub ErrorLog(ByVal nErr As Long, ByVal sError As String)
+    Public Sub ErrorLog(nErr As Long, sError As String, sModl As String, sLoca As String)
         Dim LocPath As String
         Dim sErrMsg As String
 
+        sModl = "CTCGageCal - " & sModl
         LocPath = System.Windows.Forms.Application.StartupPath
-        sErrMsg = Now() & ", " & Chr(9) & ", " & nErr & ", " & Chr(9) & ", " & sError & ", " & Chr(9) & ", " & sModule & ", " & Chr(9) & ", " & sLoc & ", " & Chr(9) & ", " & sUser & "-" & sPCName
+        sErrMsg = Now() & ", " & Chr(9) & ", " & nErr & ", " & Chr(9) & ", " & sError & ", " & Chr(9) & ", " & sModl & ", " & Chr(9) & ", " & sLoca & ", " & Chr(9) & ", " & sUser & "-" & sPCName
 
         'Save error log to local "ErrorLog.txt" file
         My.Computer.FileSystem.WriteAllText(
@@ -26,21 +29,21 @@ Module modVBCode
         cmd.CommandType = System.Data.CommandType.Text
         Dim sqlCn As New System.Data.SqlClient.SqlConnection(connectionString)
         cmd.Connection = sqlCn
-
-        'Exception occurs infrequently
         sqlCn.Open()
         sError = Replace(sError, "'", "")
-        sSQLFields = "sErr, sError, sModule, sLoc, sUser, LastUpdated"
-        sSQLVals = CStr(nErr) & ", '" & Left(sError, 255) & "','" & Left(sModule, 64) & "','" & Left(sLoc, 32) & "','" & Left(sUser, 32) & "-" & sPCName & "','" & CStr(Now) & "'"
+        sSQLFields = "sErr, sError, sModule, sLoc, sUser, LastUpdated, ErrorDate"
+        sSQLVals = CStr(nErr) & ", '" & sError & "','" & sModl & " V-" & sVersion & "','" & sLoca & "','" & sUser & "-" & sPCName & "','" & sFileInstDt & "','" & Now & "'"
         cmd.CommandText = "INSERT INTO ErrorLog (" & sSQLFields & ") VALUES (" & sSQLVals & ")"
         cmd.ExecuteNonQuery()
         sqlCn.Close()
 
         MsgBox("An error has occurred." & vbCrLf & vbCrLf &
         "Module:  " & sModule & vbCrLf &
+        "Location:  " & sLoca & vbCrLf &
         "Error:  " & CStr(nErr) & " - " & sError, , APPNAME)
 
     End Sub
+
     Function IsFileOpen(filename As String) As Boolean
         sModule = "modVBCode"
         sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
@@ -109,9 +112,11 @@ Module modVBCode
                 ' The application is using custom authentication.
                 Return My.User.Name
             End If
-        Catch
-            ErrorLog(Err.Number, Err.Description)
-            Return ""
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+            Return "--"
         End Try
 
     End Function
@@ -191,10 +196,13 @@ CopyCancel:
                 MsgBox("Save function cancelled.", MsgBoxStyle.OkOnly, "Cancelled")
             End If
 
-        Catch excpt As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+
             If IsNothing(xlApp) = False Then
-                releaseObject(xlApp)
+                ReleaseObject(xlApp)
             End If
             If IsNothing(xlWorkBook) = False Then
                 releaseObject(xlWorkBook)
@@ -216,6 +224,7 @@ CopyCancel:
         End Try
 
     End Sub
+
     Public Sub CreateFileListTable()
         sModule = "modVBCode"
         sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
@@ -262,11 +271,14 @@ CopyCancel:
             ' Add the new DataTable to the DataSet.
             dsFileNames.Tables.Add(tblFileName)
 
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
+
     Public Sub AssignCopyFolder(ByVal sFldr As String, FBD As FolderBrowserDialog)
         sModule = "modVBCode"
         sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
@@ -280,7 +292,7 @@ CopyCancel:
             sSourceFldr = ""
             sFileName = ""
 
-            Dim Impersonation As New clsAuthenticator
+            Dim Impersonation As New ClsAuthenticator
             Impersonation.Impersonator("NTCMI", sSAUser, sSAPW)
             FBD.Description = "Assign " & sFldr & " Folder to Copy Into"
             FBD.SelectedPath = My.Computer.FileSystem.SpecialDirectories.MyDocuments
@@ -298,26 +310,38 @@ CopyCancel:
                     If sDestFldr = "C:\" Then
                         MsgBox("The C root drive cannot be accessed.  Pick another folder to copy into", vbOKOnly, "Illegal Folder")
                     Else
-
-                        For Each foundFile As String In IO.Directory.GetFiles(sSourceFldr)
+                        iFileCounter = 0
+                        Dim fileEntries As Array = IO.Directory.GetFiles(sSourceFldr, sGageID & "*")
+                        For Each foundFile As String In fileEntries
+                            'For Each foundFile As String In IO.Directory.GetFiles(sSourceFldr, sGageID & "*")
                             sFileName = GetFileNameFromPath(foundFile)
-                            If InStr(sFileName, sGageID) >= 1 Then
-                                dtFileDate = My.Computer.FileSystem.GetFileInfo(IO.Path.Combine(sSourceFldr, sFileName)).LastWriteTime
-                                'Add Name to temp table tblFileName
-                                FileNameRow = tblFileName.NewRow()
+                            'If InStr(sFileName, sGageID) >= 1 Then
+                            dtFileDate = My.Computer.FileSystem.GetFileInfo(IO.Path.Combine(sSourceFldr, sFileName)).LastWriteTime
+                            'Add Name to temp table tblFileName
+                            FileNameRow = tblFileName.NewRow()
+                            If sFldr = "Certs" Then
+                                If iFileCounter = fileEntries.Length - 1 Then
+                                    FileNameRow("Select") = True
+                                Else
+                                    FileNameRow("Select") = False
+                                End If
+                            Else
                                 FileNameRow("Select") = True
-                                FileNameRow("FileName") = sFileName
-                                FileNameRow("FileDate") = dtFileDate
-                                tblFileName.Rows.Add(FileNameRow)
                             End If
+                            FileNameRow("FileName") = sFileName
+                            FileNameRow("FileDate") = dtFileDate
+                            tblFileName.Rows.Add(FileNameRow)
+                            iFileCounter += 1
+                            'End If
                         Next
+                        iFileCounter = 0
 
                         sFltr = ""
                         sCopyType = sFldr
                         If (sFldr = "Certs") And tblFileName.Rows.Count > 1 Then
                             'Open file selection dialog to revise list in tblFileName
-                            frmFilePickDlg.ShowDialog()
-                            If frmFilePickDlg.DialogResult = DialogResult.OK Then
+                            FrmFilePickDlg.ShowDialog()
+                            If FrmFilePickDlg.DialogResult = DialogResult.OK Then
                                 sFltr = "Select = TRUE"
                             Else
                                 'Set filter to pick no files
@@ -325,8 +349,8 @@ CopyCancel:
                             End If
                         ElseIf sFldr = "Instructions" And tblFileName.Rows.Count > 1 Then
                             'Open file selection dialog to revise list in tblFileName
-                            frmFilePickDlg.ShowDialog()
-                            If frmFilePickDlg.DialogResult = DialogResult.OK Then
+                            FrmFilePickDlg.ShowDialog()
+                            If FrmFilePickDlg.DialogResult = DialogResult.OK Then
                                 sFltr = "Select = TRUE"
                             Else
                                 'Set filter to pick no files
@@ -381,8 +405,10 @@ CopyCancel:
 
             tblFileName.Rows.Clear()
 
-        Catch
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -455,5 +481,181 @@ CopyCancel:
         End Try
 
     End Function
+
+    Public Sub RecordInstallDate()
+        Dim wr As StreamWriter
+        Dim dirName As String = System.Windows.Forms.Application.StartupPath
+        Dim sRWFile As String = "VersnDate.txt"
+        Dim sFileVers As String
+
+        Try
+            sVersion = GetVersion()
+            sInstallDt = CStr(Now)
+
+            If My.Computer.FileSystem.FileExists(dirName & "\" & sRWFile) = False Then
+                wr = New StreamWriter(dirName & "\" & sRWFile)
+                wr.WriteLine(String.Format("{0},{1}", sVersion, sInstallDt))
+                wr.Flush()
+            End If
+
+            Using MyReader As New Microsoft.VisualBasic.
+                      FileIO.TextFieldParser(dirName & "\" & sRWFile)
+                MyReader.TextFieldType = FileIO.FieldType.Delimited
+                MyReader.SetDelimiters(",")
+                Dim currentRow As String()
+                While Not MyReader.EndOfData
+                    Try
+                        currentRow = MyReader.ReadFields()
+                        'Dim currentField As String
+                        sFileVers = currentRow(0)
+                        sFileInstDt = currentRow(1)
+                        If sVersion <> sFileVers Then
+                            wr = New StreamWriter(dirName & "\" & sRWFile)
+                            wr.WriteLine(String.Format("{0},{1}", sVersion, sInstallDt))
+                            wr.Flush()
+                        End If
+
+                    Catch ex As Microsoft.VisualBasic.
+                    FileIO.MalformedLineException
+                        'MsgBox("Line " & ex.Message & "is not valid and will be skipped.")
+                    End Try
+                End While
+            End Using
+
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+        End Try
+    End Sub
+
+    Public Sub FillReportTbl(RptObj As ReportViewer, DRowObj As DataRow(), sRptDSName As String)
+        sModule = "modVBCode"
+        sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
+
+        Try
+
+            If DRowObj.Count > 0 Then
+                'Copy rows into report data source
+                Dim dt = DRowObj.CopyToDataTable()
+                dt.TableName = sRptDSName
+                Dim RecsDS As New DataSet()
+                RecsDS.Tables.Add(dt)
+
+                'Create a report data source from the DataSet.Table(sfilter) table  
+                Dim rdsValdRecsDS As New ReportDataSource With {
+                    .Name = sRptDSName,
+                    .Value = RecsDS.Tables(sRptDSName)
+                    }
+                RptObj.LocalReport.DataSources.Add(rdsValdRecsDS)
+            End If
+
+        Catch Ex As Exception
+            ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+        End Try
+    End Sub
+
+    Public Sub HandleRptParams(RptVwr As ReportViewer, ParamName As String, ParamVal As String)
+        sModule = "modVBCode"
+        sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
+        Dim rp As New ReportParameter()
+
+        Try
+            rp.Name = ParamName
+            If ParamVal = Nothing Then
+                ParamVal = "-"
+            End If
+            rp.Values.Clear()
+            rp.Values.Add(ParamVal)
+
+            'Set the report parameters for the report
+            Dim parameters() As ReportParameter = {rp}
+            RptVwr.LocalReport.SetParameters(parameters)
+
+        Catch Ex As Exception
+            ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+        End Try
+
+    End Sub
+
+    Public Function GetVersion() As String
+        Dim ver As Version
+
+        Try
+
+            If (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed) Then
+                ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion
+                Return String.Format("{0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision)
+            Else
+                Return "--"
+            End If
+        Catch Ex As Exception
+            sModule = "ModVBCode"
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+            Return "--"
+        End Try
+
+    End Function
+
+
+    Public Function GetMethodName(<System.Runtime.CompilerServices.CallerMemberName>
+    Optional memberName As String = Nothing) As String
+
+        Return memberName
+
+    End Function
+
+    Public Function GetLineNumber(ByVal ex As Exception)
+        Dim lineNumber As Int32 = 0
+        Const lineSearch As String = ":line "
+        Dim index = ex.StackTrace.LastIndexOf(lineSearch)
+        If index <> -1 Then
+            Dim lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length)
+            If Int32.TryParse(lineNumberText, lineNumber) Then
+            End If
+        End If
+        Return lineNumber
+    End Function
+
+    Public Function GetData(ByVal sqlCommand As String) _
+        As System.Data.DataTable
+
+        Try
+
+            Dim connectionString As String = My.Settings("TestCenterDataSet")
+            Dim CTCConnection As SqlConnection =
+                New SqlConnection(connectionString)
+
+            Dim command As New SqlCommand(sqlCommand, CTCConnection) With {
+                .CommandTimeout = iCmdTO
+            }
+            Dim adapter As SqlDataAdapter = New SqlDataAdapter With {
+                .SelectCommand = command
+            }
+
+            Dim table As New System.Data.DataTable With {
+                .Locale = System.Globalization.CultureInfo.InvariantCulture
+            }
+            adapter.Fill(table)
+
+            Return table
+        Catch Ex As Exception
+            sModule = "CTCGageCalibration"
+            sLoc = "ModVBCode"
+            ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+            Return Nothing
+        End Try
+
+    End Function
+
+    Public Function NewEventKey() As Integer
+        'Return New EventKey for next Event Record
+        Dim GVEKDs = From tblGageValdEvent In db.TblGageValdEvnts
+                     Select tblGageValdEvent.EventKey
+        Return GVEKDs.Max + 1
+
+    End Function
+
 
 End Module

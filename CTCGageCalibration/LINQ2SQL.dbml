@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TC_Report" Class="LINQ2SQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SVRSQLPROD;Initial Catalog=TC_Report;Persist Security Info=True;User ID=SQLSHOP;Connect Timeout=60" SettingsObjectName="CTCGageCalibration.My.MySettings" SettingsPropertyName="TestCenterrDataSet" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SVRSQLPROD;Initial Catalog=TC_Report;Persist Security Info=True;User ID=SQLSHOP;Connect Timeout=60" SettingsObjectName="CTCGageCalibration.My.MySettings" SettingsPropertyName="TestCenterDataSet" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblGageCalLog" Member="tblGageCalLogs">
     <Type Name="tblGageCalLog">
       <Column Name="CalLogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,24 +8,6 @@
       <Column Name="CalDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="CalNotes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="PassFail" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblGageCalMaster" Member="tblGageCalMasters">
-    <Type Name="tblGageCalMaster">
-      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Manufacturer" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Model_Serial" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Details_Size" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Accuracy" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Location_Assignee" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="Cal_Cycle" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Cal_Instructions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="GageNotes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="LocEntityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblGageCalRejctAction" Member="tblGageCalRejctActions">
@@ -120,6 +102,18 @@
       <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="IsDue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Today" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OvrDue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GageMetrics" Member="GageMetrics">
+    <Type Name="GageMetric">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Gages_Due" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gages_Overdue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gages_In_Service" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gages_Ref_Only" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gages_Out_Service" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblSettings" Member="tblSettings">
@@ -129,6 +123,99 @@
       <Column Name="SettingValue" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="SettingDescript" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Encrypted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AppName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageGroup" Member="TblGageGroups">
+    <Type Name="TblGageGroup">
+      <Column Name="GageGroupID" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GageGroupDesc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GageGroupOwner" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GageGroupActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GageGroupDefaultLoc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGageCalMaster" Member="tblGageCalMasters">
+    <Type Name="tblGageCalMaster">
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Manufacturer" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Model_Serial" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Details_Size" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Accuracy" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Location_Assignee" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Cal_Cycle" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cal_Instructions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="GageNotes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GageType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LocEntityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GageValdID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCBOLists" Member="tblCBOLists">
+    <Type Name="tblCBOList">
+      <Column Name="IDKey" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cboID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SortOrd" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ListName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CanAdd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdCrit" Member="TblGageValdCrits">
+    <Type Name="TblGageValdCrit">
+      <Column Name="CritID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GageTypeDesc" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CriteriaSet" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CriteriaDesc" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ScaleDesc" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TargetValue" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TolType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UpperLimit" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LowerLimit" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdEvntRslts" Member="TblGageValdEvntRslts">
+    <Type Name="TblGageValdEvntRslt">
+      <Column Name="ResultsKey" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CritID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MeasuredRslt" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PassFail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RsltsComment" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdXColHdr" Member="TblGageValdXColHdrs">
+    <Type Name="TblGageValdXColHdr">
+      <Column Name="XColID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CriteriaSetDesc" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ColName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdXColData" Member="TblGageValdXColDatas">
+    <Type Name="TblGageValdXColData">
+      <Column Name="DataKey" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CritID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="XColID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ColData" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdGagesUsed" Member="TblGageValdGagesUseds">
+    <Type Name="TblGageValdGagesUsed">
+      <Column Name="GVGUKey" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblGageValdEvnts" Member="TblGageValdEvnts">
+    <Type Name="TblGageValdEvnt">
+      <Column Name="EventKey" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GageID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="GageValdDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EvntComments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmAdminCalRecs
+Partial Class FrmAdminCalRecs
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -24,7 +24,9 @@ Partial Class frmAdminCalRecs
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdminCalRecs))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAdminCalRecs))
+        Me.V_GageCalLogBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TestCenterDataSet = New CTCGageCalibration.TestCenterDataSet()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.CurrentRecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiAddNew = New System.Windows.Forms.ToolStripMenuItem()
@@ -46,16 +48,6 @@ Partial Class frmAdminCalRecs
         Me.btnClearFilter = New System.Windows.Forms.Button()
         Me.cboGageType = New System.Windows.Forms.ComboBox()
         Me.dgvGageCalLog = New System.Windows.Forms.DataGridView()
-        Me.fldrBrwsrDialgCal = New System.Windows.Forms.FolderBrowserDialog()
-        Me.ProgBarCal = New System.Windows.Forms.ProgressBar()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lblCurrentGageID = New System.Windows.Forms.Label()
-        Me.rptCalLogs = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TestCenterDataSet = New CTCGageCalibration.TestCenterDataSet()
-        Me.V_GageCalLogBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.V_GageCalLogTableAdapter = New CTCGageCalibration.TestCenterDataSetTableAdapters.v_GageCalLogTableAdapter()
-        Me.TableAdapterManager = New CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager()
         Me.CalLogIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GageIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DescriptionCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,12 +57,30 @@ Partial Class frmAdminCalRecs
         Me.PassFailCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GageTypeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NextDueCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fldrBrwsrDialgCal = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ProgBarCal = New System.Windows.Forms.ProgressBar()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblCurrentGageID = New System.Windows.Forms.Label()
+        Me.rptCalLogs = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.V_GageCalLogTableAdapter = New CTCGageCalibration.TestCenterDataSetTableAdapters.v_GageCalLogTableAdapter()
+        Me.TableAdapterManager = New CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager()
+        CType(Me.V_GageCalLogBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.gbxFilters.SuspendLayout()
         CType(Me.dgvGageCalLog, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.V_GageCalLogBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'V_GageCalLogBindingSource
+        '
+        Me.V_GageCalLogBindingSource.DataMember = "v_GageCalLog"
+        Me.V_GageCalLogBindingSource.DataSource = Me.TestCenterDataSet
+        '
+        'TestCenterDataSet
+        '
+        Me.TestCenterDataSet.DataSetName = "TestCenterDataSet"
+        Me.TestCenterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'MenuStrip1
         '
@@ -124,7 +134,7 @@ Partial Class frmAdminCalRecs
         '
         Me.ExportToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllCalDataToYourPCToolStripMenuItem, Me.FileCertsForCurrentGageToYourPCToolStripMenuItem})
         Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.ExportToolStripMenuItem.Text = "Export"
         '
         'AllCalDataToYourPCToolStripMenuItem
@@ -149,7 +159,7 @@ Partial Class frmAdminCalRecs
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(38, 20)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'gbxFilters
@@ -246,85 +256,6 @@ Partial Class frmAdminCalRecs
         Me.dgvGageCalLog.Size = New System.Drawing.Size(843, 319)
         Me.dgvGageCalLog.TabIndex = 3
         '
-        'ProgBarCal
-        '
-        Me.ProgBarCal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ProgBarCal.Location = New System.Drawing.Point(209, 229)
-        Me.ProgBarCal.Name = "ProgBarCal"
-        Me.ProgBarCal.Size = New System.Drawing.Size(436, 39)
-        Me.ProgBarCal.TabIndex = 4
-        Me.ProgBarCal.Visible = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(12, 31)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(166, 15)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "CALIBRATION RECORDS"
-        '
-        'lblCurrentGageID
-        '
-        Me.lblCurrentGageID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentGageID.Location = New System.Drawing.Point(319, 31)
-        Me.lblCurrentGageID.Name = "lblCurrentGageID"
-        Me.lblCurrentGageID.Size = New System.Drawing.Size(353, 15)
-        Me.lblCurrentGageID.TabIndex = 8
-        Me.lblCurrentGageID.Text = "Currently Selected Gage:  --"
-        '
-        'rptCalLogs
-        '
-        Me.rptCalLogs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        ReportDataSource1.Name = "CalLogs"
-        ReportDataSource1.Value = Me.V_GageCalLogBindingSource
-        Me.rptCalLogs.LocalReport.DataSources.Add(ReportDataSource1)
-        Me.rptCalLogs.LocalReport.ReportEmbeddedResource = "CTCGageCalibration.GageReportCalLogs.rdlc"
-        Me.rptCalLogs.Location = New System.Drawing.Point(13, 119)
-        Me.rptCalLogs.Name = "rptCalLogs"
-        Me.rptCalLogs.Size = New System.Drawing.Size(842, 319)
-        Me.rptCalLogs.TabIndex = 9
-        Me.rptCalLogs.Visible = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(184, 31)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(125, 15)
-        Me.Label5.TabIndex = 14
-        Me.Label5.Text = "FILTER SETTINGS"
-        '
-        'TestCenterDataSet
-        '
-        Me.TestCenterDataSet.DataSetName = "TestCenterDataSet"
-        Me.TestCenterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'V_GageCalLogBindingSource
-        '
-        Me.V_GageCalLogBindingSource.DataMember = "v_GageCalLog"
-        Me.V_GageCalLogBindingSource.DataSource = Me.TestCenterDataSet
-        '
-        'V_GageCalLogTableAdapter
-        '
-        Me.V_GageCalLogTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.Connection = Nothing
-        Me.TableAdapterManager.tblEntitiesTableAdapter = Nothing
-        Me.TableAdapterManager.tblGageCalLogTableAdapter = Nothing
-        Me.TableAdapterManager.tblGageCalMasterTableAdapter = Nothing
-        Me.TableAdapterManager.tblGageCalRejctActionTableAdapter = Nothing
-        Me.TableAdapterManager.UpdateOrder = CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
         'CalLogIDCol
         '
         Me.CalLogIDCol.DataPropertyName = "CalLogID"
@@ -381,7 +312,87 @@ Partial Class frmAdminCalRecs
         Me.NextDueCol.HeaderText = "NextDue"
         Me.NextDueCol.Name = "NextDueCol"
         '
-        'frmAdminCalRecs
+        'ProgBarCal
+        '
+        Me.ProgBarCal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ProgBarCal.Location = New System.Drawing.Point(209, 229)
+        Me.ProgBarCal.Name = "ProgBarCal"
+        Me.ProgBarCal.Size = New System.Drawing.Size(436, 39)
+        Me.ProgBarCal.TabIndex = 4
+        Me.ProgBarCal.Visible = False
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Red
+        Me.Label4.Location = New System.Drawing.Point(12, 31)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(166, 15)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "CALIBRATION RECORDS"
+        '
+        'lblCurrentGageID
+        '
+        Me.lblCurrentGageID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentGageID.Location = New System.Drawing.Point(319, 31)
+        Me.lblCurrentGageID.Name = "lblCurrentGageID"
+        Me.lblCurrentGageID.Size = New System.Drawing.Size(353, 15)
+        Me.lblCurrentGageID.TabIndex = 8
+        Me.lblCurrentGageID.Text = "Currently Selected Gage:  --"
+        '
+        'rptCalLogs
+        '
+        Me.rptCalLogs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ReportDataSource1.Name = "CalLogs"
+        ReportDataSource1.Value = Me.V_GageCalLogBindingSource
+        Me.rptCalLogs.LocalReport.DataSources.Add(ReportDataSource1)
+        Me.rptCalLogs.LocalReport.ReportEmbeddedResource = "CTCGageCalibration.GageReportCalLogs.rdlc"
+        Me.rptCalLogs.Location = New System.Drawing.Point(12, 120)
+        Me.rptCalLogs.Name = "rptCalLogs"
+        Me.rptCalLogs.ServerReport.BearerToken = Nothing
+        Me.rptCalLogs.Size = New System.Drawing.Size(842, 318)
+        Me.rptCalLogs.TabIndex = 9
+        Me.rptCalLogs.Visible = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(184, 31)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(125, 15)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "FILTER SETTINGS"
+        '
+        'V_GageCalLogTableAdapter
+        '
+        Me.V_GageCalLogTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.GageMetricsTableAdapter = Nothing
+        Me.TableAdapterManager.tblCBOListsTableAdapter = Nothing
+        Me.TableAdapterManager.tblEntitiesTableAdapter = Nothing
+        Me.TableAdapterManager.tblGageCalLogTableAdapter = Nothing
+        Me.TableAdapterManager.tblGageCalMasterTableAdapter = Nothing
+        Me.TableAdapterManager.tblGageCalRejctActionTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageGroupTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdCritTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdEvntRsltsTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdEvntsTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdGagesUsedTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdXColDataTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdXColHdrTableAdapter = Nothing
+        Me.TableAdapterManager.tblSettingsTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'FrmAdminCalRecs
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -397,15 +408,15 @@ Partial Class frmAdminCalRecs
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MinimumSize = New System.Drawing.Size(883, 489)
-        Me.Name = "frmAdminCalRecs"
+        Me.Name = "FrmAdminCalRecs"
         Me.Text = "Administrate Calibration Records"
+        CType(Me.V_GageCalLogBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.gbxFilters.ResumeLayout(False)
         Me.gbxFilters.PerformLayout()
         CType(Me.dgvGageCalLog, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.V_GageCalLogBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

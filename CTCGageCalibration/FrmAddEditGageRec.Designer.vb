@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmAddEditGageRec
+Partial Class FrmAddEditGageRec
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -36,7 +36,8 @@ Partial Class frmAddEditGageRec
         Dim GageTypeLabel As System.Windows.Forms.Label
         Dim ManufacturerLabel As System.Windows.Forms.Label
         Dim Cal_CycleLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddEditGageRec))
+        Dim LblGG As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAddEditGageRec))
         Me.GageIDTextBox = New System.Windows.Forms.TextBox()
         Me.DescriptionTextBox = New System.Windows.Forms.TextBox()
         Me.Model_SerialTextBox = New System.Windows.Forms.TextBox()
@@ -52,8 +53,9 @@ Partial Class frmAddEditGageRec
         Me.DateDueTextBox = New System.Windows.Forms.TextBox()
         Me.Cal_CycleComboBox = New System.Windows.Forms.ComboBox()
         Me.cboLocation_Assignee = New System.Windows.Forms.ComboBox()
-        Me.TestCenterDataSet = New CTCGageCalibration.TestCenterDataSet()
+        Me.GageGroupComboBox = New System.Windows.Forms.ComboBox()
         Me.TblGageCalMasterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TestCenterDataSet = New CTCGageCalibration.TestCenterDataSet()
         Me.TblGageCalMasterTableAdapter = New CTCGageCalibration.TestCenterDataSetTableAdapters.tblGageCalMasterTableAdapter()
         Me.TableAdapterManager = New CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager()
         GageIDLabel = New System.Windows.Forms.Label()
@@ -69,8 +71,9 @@ Partial Class frmAddEditGageRec
         GageTypeLabel = New System.Windows.Forms.Label()
         ManufacturerLabel = New System.Windows.Forms.Label()
         Cal_CycleLabel = New System.Windows.Forms.Label()
-        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        LblGG = New System.Windows.Forms.Label()
         CType(Me.TblGageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GageIDLabel
@@ -190,9 +193,19 @@ Partial Class frmAddEditGageRec
         Cal_CycleLabel.TabIndex = 100
         Cal_CycleLabel.Text = "Cal Cycle:"
         '
+        'LblGG
+        '
+        LblGG.AutoSize = True
+        LblGG.Location = New System.Drawing.Point(41, 29)
+        LblGG.Name = "LblGG"
+        LblGG.Size = New System.Drawing.Size(68, 13)
+        LblGG.TabIndex = 104
+        LblGG.Text = "Gage Group:"
+        '
         'GageIDTextBox
         '
         Me.GageIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblGageCalMasterBindingSource, "GageID", True))
+        Me.GageIDTextBox.Enabled = False
         Me.GageIDTextBox.Location = New System.Drawing.Point(110, 53)
         Me.GageIDTextBox.Name = "GageIDTextBox"
         Me.GageIDTextBox.Size = New System.Drawing.Size(121, 20)
@@ -225,7 +238,7 @@ Partial Class frmAddEditGageRec
         '
         'AccuracyTextBox
         '
-        Me.AccuracyTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblGageCalMasterBindingSource, "Details_Size", True))
+        Me.AccuracyTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblGageCalMasterBindingSource, "Accuracy", True))
         Me.AccuracyTextBox.Location = New System.Drawing.Point(423, 131)
         Me.AccuracyTextBox.Name = "AccuracyTextBox"
         Me.AccuracyTextBox.Size = New System.Drawing.Size(200, 20)
@@ -328,6 +341,7 @@ Partial Class frmAddEditGageRec
         '
         Me.cboLocation_Assignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cboLocation_Assignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cboLocation_Assignee.CausesValidation = False
         Me.cboLocation_Assignee.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.TblGageCalMasterBindingSource, "Location_Assignee", True))
         Me.cboLocation_Assignee.FormattingEnabled = True
         Me.cboLocation_Assignee.Location = New System.Drawing.Point(110, 130)
@@ -335,15 +349,26 @@ Partial Class frmAddEditGageRec
         Me.cboLocation_Assignee.Size = New System.Drawing.Size(200, 21)
         Me.cboLocation_Assignee.TabIndex = 102
         '
-        'TestCenterDataSet
+        'GageGroupComboBox
         '
-        Me.TestCenterDataSet.DataSetName = "TestCenterDataSet"
-        Me.TestCenterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.GageGroupComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.GageGroupComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.GageGroupComboBox.Enabled = False
+        Me.GageGroupComboBox.FormattingEnabled = True
+        Me.GageGroupComboBox.Location = New System.Drawing.Point(110, 26)
+        Me.GageGroupComboBox.Name = "GageGroupComboBox"
+        Me.GageGroupComboBox.Size = New System.Drawing.Size(237, 21)
+        Me.GageGroupComboBox.TabIndex = 103
         '
         'TblGageCalMasterBindingSource
         '
         Me.TblGageCalMasterBindingSource.DataMember = "tblGageCalMaster"
         Me.TblGageCalMasterBindingSource.DataSource = Me.TestCenterDataSet
+        '
+        'TestCenterDataSet
+        '
+        Me.TestCenterDataSet.DataSetName = "TestCenterDataSet"
+        Me.TestCenterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'TblGageCalMasterTableAdapter
         '
@@ -352,18 +377,23 @@ Partial Class frmAddEditGageRec
         'TableAdapterManager
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.GageMetricsTableAdapter = Nothing
         Me.TableAdapterManager.tblEntitiesTableAdapter = Nothing
         Me.TableAdapterManager.tblGageCalLogTableAdapter = Nothing
         Me.TableAdapterManager.tblGageCalMasterTableAdapter = Me.TblGageCalMasterTableAdapter
         Me.TableAdapterManager.tblGageCalRejctActionTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageGroupTableAdapter = Nothing
+        Me.TableAdapterManager.tblSettingsTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'frmAddEditGageRec
+        'FrmAddEditGageRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(649, 411)
+        Me.Controls.Add(LblGG)
+        Me.Controls.Add(Me.GageGroupComboBox)
         Me.Controls.Add(Me.cboLocation_Assignee)
         Me.Controls.Add(Cal_CycleLabel)
         Me.Controls.Add(Me.Cal_CycleComboBox)
@@ -395,10 +425,10 @@ Partial Class frmAddEditGageRec
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximumSize = New System.Drawing.Size(665, 450)
         Me.MinimumSize = New System.Drawing.Size(665, 450)
-        Me.Name = "frmAddEditGageRec"
+        Me.Name = "FrmAddEditGageRec"
         Me.Text = "Add New Gage"
-        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblGageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -422,4 +452,5 @@ Partial Class frmAddEditGageRec
     Friend WithEvents TblGageCalMasterBindingSource As BindingSource
     Friend WithEvents TblGageCalMasterTableAdapter As TestCenterDataSetTableAdapters.tblGageCalMasterTableAdapter
     Friend WithEvents TableAdapterManager As TestCenterDataSetTableAdapters.TableAdapterManager
+    Friend WithEvents GageGroupComboBox As ComboBox
 End Class

@@ -1,0 +1,27 @@
+Gage Notification Features
+
+SU Daily auto save of single gage record to tblGageDueData in SQL
+	tblGageDueData Columns
+		Date
+		# of gages In Service
+		# of gages Due in 60 days or <
+		# of gages Overdue
+
+Make View to summarize tblGageDueData by Month / Year
+	Select specific year, or, select last 12 mo's
+	v_GageMonthlyRpt
+		Month / Year
+		Max # of gages In Service
+		Max # of gages Due in 60 days or < for any one day
+		Max # of gages Overdue for any one day
+
+Make Report in Gage Calibration App - RptGagesDueByMonth
+	Query # of gages that are to come due for each of the next 2 months
+		qryGageNosDueByMoYr
+			Month / Year (for each of the next 2 months)
+			# of gages coming due in given month
+			Sub Query gages due for given month
+				qryGageNosDueByDay
+					DateDue
+					GageID
+					GageDescription

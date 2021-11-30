@@ -23,29 +23,33 @@ Partial Class FrmGageCalMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGageCalMain))
         Me.V_GageCalMasterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TestCenterDataSet = New CTCGageCalibration.TestCenterDataSet()
         Me.dgvGageList = New System.Windows.Forms.DataGridView()
-        Me.GageIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GageTypeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GageIDCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DescriptionCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ManufacturerCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Model_SerialCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Details_SizeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModelSerialCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailsSizeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AccuracyCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Location_AssigneeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LocationAssigneeCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cal_CycleCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cal_InstructionsCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalCycleCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CalInstructionsCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GageNotesCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DateDueCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastCalCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsDueCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TodayCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OvrDueCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sp_GageCalMasterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboGageID = New System.Windows.Forms.ComboBox()
         Me.cboGageType = New System.Windows.Forms.ComboBox()
         Me.cboStatus = New System.Windows.Forms.ComboBox()
         Me.gbxFilters = New System.Windows.Forms.GroupBox()
+        Me.chkOvrDue = New System.Windows.Forms.CheckBox()
         Me.btnClearFilter = New System.Windows.Forms.Button()
         Me.chkDue = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -60,11 +64,16 @@ Partial Class FrmGageCalMain
         Me.tsmiEditCurrentGage = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiAddNewGage = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportGageListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GageMetricsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TsmiEditGageGroups = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiCalRecs = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiCreateCalRec = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiEditCalRecordForCurrentGage = New System.Windows.Forms.ToolStripMenuItem()
         Me.RetrieveFileCertForCurrentGageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiViewPastCalRec = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TsmiGageValidation = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TsmiAddOrEditValidationRec = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TsmiDefineValidationCriteria = New System.Windows.Forms.ToolStripMenuItem()
         Me.InstructionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiRetrieveInstructions = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiSaveInstructions = New System.Windows.Forms.ToolStripMenuItem()
@@ -81,9 +90,11 @@ Partial Class FrmGageCalMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.V_GageCalMasterTableAdapter = New CTCGageCalibration.TestCenterDataSetTableAdapters.v_GageCalMasterTableAdapter()
         Me.TableAdapterManager = New CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager()
+        Me.Sp_GageCalMasterTableAdapter = New CTCGageCalibration.TestCenterDataSetTableAdapters.sp_GageCalMasterTableAdapter()
         CType(Me.V_GageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvGageList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sp_GageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbxFilters.SuspendLayout()
         Me.MainCalMenuStrip.SuspendLayout()
         Me.pnlRejectedGage.SuspendLayout()
@@ -108,20 +119,13 @@ Partial Class FrmGageCalMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvGageList.AutoGenerateColumns = False
         Me.dgvGageList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGageList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GageIDCol, Me.GageTypeCol, Me.DescriptionCol, Me.ManufacturerCol, Me.Model_SerialCol, Me.Details_SizeCol, Me.AccuracyCol, Me.Location_AssigneeCol, Me.StatusCol, Me.Cal_CycleCol, Me.Cal_InstructionsCol, Me.GageNotesCol, Me.DateDueCol, Me.LastCalCol})
-        Me.dgvGageList.DataSource = Me.V_GageCalMasterBindingSource
+        Me.dgvGageList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GageTypeCol, Me.GageIDCol, Me.DescriptionCol, Me.ManufacturerCol, Me.ModelSerialCol, Me.DetailsSizeCol, Me.AccuracyCol, Me.LocationAssigneeCol, Me.StatusCol, Me.CalCycleCol, Me.CalInstructionsCol, Me.GageNotesCol, Me.DateDueCol, Me.LastCalCol, Me.IsDueCol, Me.TodayCol, Me.OvrDueCol})
+        Me.dgvGageList.DataSource = Me.Sp_GageCalMasterBindingSource
         Me.dgvGageList.Location = New System.Drawing.Point(12, 119)
         Me.dgvGageList.Name = "dgvGageList"
         Me.dgvGageList.ReadOnly = True
         Me.dgvGageList.Size = New System.Drawing.Size(1002, 319)
         Me.dgvGageList.TabIndex = 1
-        '
-        'GageIDCol
-        '
-        Me.GageIDCol.DataPropertyName = "GageID"
-        Me.GageIDCol.HeaderText = "GageID"
-        Me.GageIDCol.Name = "GageIDCol"
-        Me.GageIDCol.ReadOnly = True
         '
         'GageTypeCol
         '
@@ -129,6 +133,13 @@ Partial Class FrmGageCalMain
         Me.GageTypeCol.HeaderText = "GageType"
         Me.GageTypeCol.Name = "GageTypeCol"
         Me.GageTypeCol.ReadOnly = True
+        '
+        'GageIDCol
+        '
+        Me.GageIDCol.DataPropertyName = "GageID"
+        Me.GageIDCol.HeaderText = "GageID"
+        Me.GageIDCol.Name = "GageIDCol"
+        Me.GageIDCol.ReadOnly = True
         '
         'DescriptionCol
         '
@@ -144,19 +155,19 @@ Partial Class FrmGageCalMain
         Me.ManufacturerCol.Name = "ManufacturerCol"
         Me.ManufacturerCol.ReadOnly = True
         '
-        'Model_SerialCol
+        'ModelSerialCol
         '
-        Me.Model_SerialCol.DataPropertyName = "Model_Serial"
-        Me.Model_SerialCol.HeaderText = "Model_Serial"
-        Me.Model_SerialCol.Name = "Model_SerialCol"
-        Me.Model_SerialCol.ReadOnly = True
+        Me.ModelSerialCol.DataPropertyName = "Model_Serial"
+        Me.ModelSerialCol.HeaderText = "Model_Serial"
+        Me.ModelSerialCol.Name = "ModelSerialCol"
+        Me.ModelSerialCol.ReadOnly = True
         '
-        'Details_SizeCol
+        'DetailsSizeCol
         '
-        Me.Details_SizeCol.DataPropertyName = "Details_Size"
-        Me.Details_SizeCol.HeaderText = "Details_Size"
-        Me.Details_SizeCol.Name = "Details_SizeCol"
-        Me.Details_SizeCol.ReadOnly = True
+        Me.DetailsSizeCol.DataPropertyName = "Details_Size"
+        Me.DetailsSizeCol.HeaderText = "Details_Size"
+        Me.DetailsSizeCol.Name = "DetailsSizeCol"
+        Me.DetailsSizeCol.ReadOnly = True
         '
         'AccuracyCol
         '
@@ -165,12 +176,12 @@ Partial Class FrmGageCalMain
         Me.AccuracyCol.Name = "AccuracyCol"
         Me.AccuracyCol.ReadOnly = True
         '
-        'Location_AssigneeCol
+        'LocationAssigneeCol
         '
-        Me.Location_AssigneeCol.DataPropertyName = "Location_Assignee"
-        Me.Location_AssigneeCol.HeaderText = "Location_Assignee"
-        Me.Location_AssigneeCol.Name = "Location_AssigneeCol"
-        Me.Location_AssigneeCol.ReadOnly = True
+        Me.LocationAssigneeCol.DataPropertyName = "Location_Assignee"
+        Me.LocationAssigneeCol.HeaderText = "Location_Assignee"
+        Me.LocationAssigneeCol.Name = "LocationAssigneeCol"
+        Me.LocationAssigneeCol.ReadOnly = True
         '
         'StatusCol
         '
@@ -179,19 +190,19 @@ Partial Class FrmGageCalMain
         Me.StatusCol.Name = "StatusCol"
         Me.StatusCol.ReadOnly = True
         '
-        'Cal_CycleCol
+        'CalCycleCol
         '
-        Me.Cal_CycleCol.DataPropertyName = "Cal_Cycle"
-        Me.Cal_CycleCol.HeaderText = "Cal_Cycle"
-        Me.Cal_CycleCol.Name = "Cal_CycleCol"
-        Me.Cal_CycleCol.ReadOnly = True
+        Me.CalCycleCol.DataPropertyName = "Cal_Cycle"
+        Me.CalCycleCol.HeaderText = "Cal_Cycle"
+        Me.CalCycleCol.Name = "CalCycleCol"
+        Me.CalCycleCol.ReadOnly = True
         '
-        'Cal_InstructionsCol
+        'CalInstructionsCol
         '
-        Me.Cal_InstructionsCol.DataPropertyName = "Cal_Instructions"
-        Me.Cal_InstructionsCol.HeaderText = "Cal_Instructions"
-        Me.Cal_InstructionsCol.Name = "Cal_InstructionsCol"
-        Me.Cal_InstructionsCol.ReadOnly = True
+        Me.CalInstructionsCol.DataPropertyName = "Cal_Instructions"
+        Me.CalInstructionsCol.HeaderText = "Cal_Instructions"
+        Me.CalInstructionsCol.Name = "CalInstructionsCol"
+        Me.CalInstructionsCol.ReadOnly = True
         '
         'GageNotesCol
         '
@@ -213,6 +224,32 @@ Partial Class FrmGageCalMain
         Me.LastCalCol.HeaderText = "LastCal"
         Me.LastCalCol.Name = "LastCalCol"
         Me.LastCalCol.ReadOnly = True
+        '
+        'IsDueCol
+        '
+        Me.IsDueCol.DataPropertyName = "IsDue"
+        Me.IsDueCol.HeaderText = "IsDue"
+        Me.IsDueCol.Name = "IsDueCol"
+        Me.IsDueCol.ReadOnly = True
+        '
+        'TodayCol
+        '
+        Me.TodayCol.DataPropertyName = "Today"
+        Me.TodayCol.HeaderText = "Today"
+        Me.TodayCol.Name = "TodayCol"
+        Me.TodayCol.ReadOnly = True
+        '
+        'OvrDueCol
+        '
+        Me.OvrDueCol.DataPropertyName = "OvrDue"
+        Me.OvrDueCol.HeaderText = "OvrDue"
+        Me.OvrDueCol.Name = "OvrDueCol"
+        Me.OvrDueCol.ReadOnly = True
+        '
+        'Sp_GageCalMasterBindingSource
+        '
+        Me.Sp_GageCalMasterBindingSource.DataMember = "sp_GageCalMaster"
+        Me.Sp_GageCalMasterBindingSource.DataSource = Me.TestCenterDataSet
         '
         'cboGageID
         '
@@ -240,6 +277,7 @@ Partial Class FrmGageCalMain
         '
         'gbxFilters
         '
+        Me.gbxFilters.Controls.Add(Me.chkOvrDue)
         Me.gbxFilters.Controls.Add(Me.btnClearFilter)
         Me.gbxFilters.Controls.Add(Me.chkDue)
         Me.gbxFilters.Controls.Add(Me.Label3)
@@ -256,9 +294,19 @@ Partial Class FrmGageCalMain
         Me.gbxFilters.TabIndex = 5
         Me.gbxFilters.TabStop = False
         '
+        'chkOvrDue
+        '
+        Me.chkOvrDue.AutoSize = True
+        Me.chkOvrDue.Location = New System.Drawing.Point(432, 37)
+        Me.chkOvrDue.Name = "chkOvrDue"
+        Me.chkOvrDue.Size = New System.Drawing.Size(120, 17)
+        Me.chkOvrDue.TabIndex = 9
+        Me.chkOvrDue.Text = "Gages Over Due"
+        Me.chkOvrDue.UseVisualStyleBackColor = True
+        '
         'btnClearFilter
         '
-        Me.btnClearFilter.Location = New System.Drawing.Point(561, 28)
+        Me.btnClearFilter.Location = New System.Drawing.Point(564, 28)
         Me.btnClearFilter.Name = "btnClearFilter"
         Me.btnClearFilter.Size = New System.Drawing.Size(88, 23)
         Me.btnClearFilter.TabIndex = 8
@@ -268,11 +316,11 @@ Partial Class FrmGageCalMain
         'chkDue
         '
         Me.chkDue.AutoSize = True
-        Me.chkDue.Location = New System.Drawing.Point(444, 34)
+        Me.chkDue.Location = New System.Drawing.Point(432, 14)
         Me.chkDue.Name = "chkDue"
-        Me.chkDue.Size = New System.Drawing.Size(111, 17)
+        Me.chkDue.Size = New System.Drawing.Size(128, 17)
         Me.chkDue.TabIndex = 7
-        Me.chkDue.Text = "Gages Due Cal"
+        Me.chkDue.Text = "Gages Due in 75<"
         Me.chkDue.UseVisualStyleBackColor = True
         '
         'Label3
@@ -342,7 +390,7 @@ Partial Class FrmGageCalMain
         '
         'tsmiEdit
         '
-        Me.tsmiEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiEditCurrentGage, Me.tsmiAddNewGage, Me.ExportGageListToolStripMenuItem})
+        Me.tsmiEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiEditCurrentGage, Me.tsmiAddNewGage, Me.ExportGageListToolStripMenuItem, Me.GageMetricsToolStripMenuItem, Me.TsmiEditGageGroups})
         Me.tsmiEdit.Name = "tsmiEdit"
         Me.tsmiEdit.Size = New System.Drawing.Size(51, 20)
         Me.tsmiEdit.Text = "Gages"
@@ -365,9 +413,21 @@ Partial Class FrmGageCalMain
         Me.ExportGageListToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.ExportGageListToolStripMenuItem.Text = "Export Gage List"
         '
+        'GageMetricsToolStripMenuItem
+        '
+        Me.GageMetricsToolStripMenuItem.Name = "GageMetricsToolStripMenuItem"
+        Me.GageMetricsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.GageMetricsToolStripMenuItem.Text = "Gage Metrics"
+        '
+        'TsmiEditGageGroups
+        '
+        Me.TsmiEditGageGroups.Name = "TsmiEditGageGroups"
+        Me.TsmiEditGageGroups.Size = New System.Drawing.Size(167, 22)
+        Me.TsmiEditGageGroups.Text = "Edit Gage Groups"
+        '
         'tsmiCalRecs
         '
-        Me.tsmiCalRecs.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiCreateCalRec, Me.tsmiEditCalRecordForCurrentGage, Me.RetrieveFileCertForCurrentGageToolStripMenuItem, Me.tsmiViewPastCalRec})
+        Me.tsmiCalRecs.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiCreateCalRec, Me.tsmiEditCalRecordForCurrentGage, Me.RetrieveFileCertForCurrentGageToolStripMenuItem, Me.tsmiViewPastCalRec, Me.TsmiGageValidation})
         Me.tsmiCalRecs.Name = "tsmiCalRecs"
         Me.tsmiCalRecs.Size = New System.Drawing.Size(82, 20)
         Me.tsmiCalRecs.Text = "Calibrations"
@@ -396,6 +456,25 @@ Partial Class FrmGageCalMain
         Me.tsmiViewPastCalRec.Name = "tsmiViewPastCalRec"
         Me.tsmiViewPastCalRec.Size = New System.Drawing.Size(274, 22)
         Me.tsmiViewPastCalRec.Text = "View/Add/Edit All Calibration Records"
+        '
+        'TsmiGageValidation
+        '
+        Me.TsmiGageValidation.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TsmiAddOrEditValidationRec, Me.TsmiDefineValidationCriteria})
+        Me.TsmiGageValidation.Name = "TsmiGageValidation"
+        Me.TsmiGageValidation.Size = New System.Drawing.Size(274, 22)
+        Me.TsmiGageValidation.Text = "Gage Validation"
+        '
+        'TsmiAddOrEditValidationRec
+        '
+        Me.TsmiAddOrEditValidationRec.Name = "TsmiAddOrEditValidationRec"
+        Me.TsmiAddOrEditValidationRec.Size = New System.Drawing.Size(228, 22)
+        Me.TsmiAddOrEditValidationRec.Text = "Add or Edit Validation Record"
+        '
+        'TsmiDefineValidationCriteria
+        '
+        Me.TsmiDefineValidationCriteria.Name = "TsmiDefineValidationCriteria"
+        Me.TsmiDefineValidationCriteria.Size = New System.Drawing.Size(228, 22)
+        Me.TsmiDefineValidationCriteria.Text = "Define Validation Criteria Sets"
         '
         'InstructionsToolStripMenuItem
         '
@@ -443,12 +522,10 @@ Partial Class FrmGageCalMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rptViewer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        ReportDataSource1.Name = "dsGageRecords"
-        ReportDataSource1.Value = Me.V_GageCalMasterBindingSource
-        Me.rptViewer.LocalReport.DataSources.Add(ReportDataSource1)
         Me.rptViewer.LocalReport.ReportEmbeddedResource = "CTCGageCalibration.GageReport.rdlc"
         Me.rptViewer.Location = New System.Drawing.Point(12, 119)
         Me.rptViewer.Name = "rptViewer"
+        Me.rptViewer.ServerReport.BearerToken = Nothing
         Me.rptViewer.Size = New System.Drawing.Size(1002, 319)
         Me.rptViewer.TabIndex = 8
         Me.rptViewer.Visible = False
@@ -516,12 +593,25 @@ Partial Class FrmGageCalMain
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.GageMetricsTableAdapter = Nothing
+        Me.TableAdapterManager.tblCBOListsTableAdapter = Nothing
         Me.TableAdapterManager.tblEntitiesTableAdapter = Nothing
         Me.TableAdapterManager.tblGageCalLogTableAdapter = Nothing
         Me.TableAdapterManager.tblGageCalMasterTableAdapter = Nothing
         Me.TableAdapterManager.tblGageCalRejctActionTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageGroupTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdCritTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdEvntRsltsTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdEvntsTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdGagesUsedTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdXColDataTableAdapter = Nothing
+        Me.TableAdapterManager.TblGageValdXColHdrTableAdapter = Nothing
         Me.TableAdapterManager.tblSettingsTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CTCGageCalibration.TestCenterDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'Sp_GageCalMasterTableAdapter
+        '
+        Me.Sp_GageCalMasterTableAdapter.ClearBeforeFill = True
         '
         'FrmGageCalMain
         '
@@ -529,13 +619,13 @@ Partial Class FrmGageCalMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1026, 450)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.dgvGageList)
         Me.Controls.Add(Me.pnlRejectedGage)
         Me.Controls.Add(Me.ProgBarGage)
         Me.Controls.Add(Me.lblCurrentGageID)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.gbxFilters)
         Me.Controls.Add(Me.MainCalMenuStrip)
+        Me.Controls.Add(Me.dgvGageList)
         Me.Controls.Add(Me.rptViewer)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1042, 489)
@@ -545,6 +635,7 @@ Partial Class FrmGageCalMain
         CType(Me.V_GageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TestCenterDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvGageList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sp_GageCalMasterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbxFilters.ResumeLayout(False)
         Me.gbxFilters.PerformLayout()
         Me.MainCalMenuStrip.ResumeLayout(False)
@@ -596,18 +687,29 @@ Partial Class FrmGageCalMain
     Friend WithEvents V_GageCalMasterBindingSource As BindingSource
     Friend WithEvents V_GageCalMasterTableAdapter As TestCenterDataSetTableAdapters.v_GageCalMasterTableAdapter
     Friend WithEvents TableAdapterManager As TestCenterDataSetTableAdapters.TableAdapterManager
-    Friend WithEvents GageIDCol As DataGridViewTextBoxColumn
+    Friend WithEvents chkOvrDue As CheckBox
+    Friend WithEvents GageMetricsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Sp_GageCalMasterBindingSource As BindingSource
+    Friend WithEvents Sp_GageCalMasterTableAdapter As TestCenterDataSetTableAdapters.sp_GageCalMasterTableAdapter
     Friend WithEvents GageTypeCol As DataGridViewTextBoxColumn
+    Friend WithEvents GageIDCol As DataGridViewTextBoxColumn
     Friend WithEvents DescriptionCol As DataGridViewTextBoxColumn
     Friend WithEvents ManufacturerCol As DataGridViewTextBoxColumn
-    Friend WithEvents Model_SerialCol As DataGridViewTextBoxColumn
-    Friend WithEvents Details_SizeCol As DataGridViewTextBoxColumn
+    Friend WithEvents ModelSerialCol As DataGridViewTextBoxColumn
+    Friend WithEvents DetailsSizeCol As DataGridViewTextBoxColumn
     Friend WithEvents AccuracyCol As DataGridViewTextBoxColumn
-    Friend WithEvents Location_AssigneeCol As DataGridViewTextBoxColumn
+    Friend WithEvents LocationAssigneeCol As DataGridViewTextBoxColumn
     Friend WithEvents StatusCol As DataGridViewTextBoxColumn
-    Friend WithEvents Cal_CycleCol As DataGridViewTextBoxColumn
-    Friend WithEvents Cal_InstructionsCol As DataGridViewTextBoxColumn
+    Friend WithEvents CalCycleCol As DataGridViewTextBoxColumn
+    Friend WithEvents CalInstructionsCol As DataGridViewTextBoxColumn
     Friend WithEvents GageNotesCol As DataGridViewTextBoxColumn
     Friend WithEvents DateDueCol As DataGridViewTextBoxColumn
     Friend WithEvents LastCalCol As DataGridViewTextBoxColumn
+    Friend WithEvents IsDueCol As DataGridViewTextBoxColumn
+    Friend WithEvents TodayCol As DataGridViewTextBoxColumn
+    Friend WithEvents OvrDueCol As DataGridViewTextBoxColumn
+    Friend WithEvents TsmiEditGageGroups As ToolStripMenuItem
+    Friend WithEvents TsmiGageValidation As ToolStripMenuItem
+    Friend WithEvents TsmiAddOrEditValidationRec As ToolStripMenuItem
+    Friend WithEvents TsmiDefineValidationCriteria As ToolStripMenuItem
 End Class

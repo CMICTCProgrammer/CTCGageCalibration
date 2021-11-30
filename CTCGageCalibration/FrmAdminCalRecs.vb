@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports Microsoft.Reporting.WinForms
 
-Public Class frmAdminCalRecs
+Public Class FrmAdminCalRecs
     Dim iColGageID As Integer
     Dim iColType As Integer
     Dim iColPerformBy As Integer
@@ -46,7 +46,7 @@ Public Class frmAdminCalRecs
     Dim rp As New ReportParameter()
     Dim pkCustomSizeLtr As New Printing.PaperSize("Custom Paper Size", 850, 1100)
 
-    Private Sub frmAdminCalRecs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmAdminCalRecs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'TestCenterDataSet.v_GageCalLog' table. You can move, or remove it, as needed.
         Me.V_GageCalLogTableAdapter.Fill(Me.TestCenterDataSet.v_GageCalLog)
 
@@ -76,8 +76,10 @@ Public Class frmAdminCalRecs
             ApplyFilter()
 
             blnLoaded = True
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
         Me.rptCalLogs.RefreshReport()
@@ -102,8 +104,10 @@ Public Class frmAdminCalRecs
                     cboGageID.Items.Add(cboGID)
                 End If
             Next
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -129,8 +133,10 @@ Public Class frmAdminCalRecs
                     cboGageType.Items.Add(cboGT.GageType)
                 End If
             Next
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -155,8 +161,10 @@ Public Class frmAdminCalRecs
                     cboPerformedBy.Items.Add(cboPB.PerformedBy)
                 End If
             Next
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -193,8 +201,10 @@ Public Class frmAdminCalRecs
                     DGV.Columns.Item(c).Width = 200
                 End If
             Next c
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -239,36 +249,38 @@ Public Class frmAdminCalRecs
             AdjstColumns(dgvGageCalLog)
 
             If rptCalLogs.Visible = True Then
-                HandleRptParams()
+                HandleRptParams(rptCalLogs, "rptParamFilter", sFilter)
                 rptCalLogs.LocalReport.Refresh()
                 rptCalLogs.RefreshReport()
             End If
 
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
-    Private Sub btnClearFilter_Click(sender As Object, e As EventArgs) Handles btnClearFilter.Click
+    Private Sub BtnClearFilter_Click(sender As Object, e As EventArgs) Handles btnClearFilter.Click
         cboGageID.Text = "ALL"
         cboGageType.Text = "ALL"
         cboPerformedBy.Text = "ALL"
         ApplyFilter()
     End Sub
 
-    Private Sub cboGageID_TextChanged(sender As Object, e As EventArgs) Handles cboGageID.TextChanged
+    Private Sub CboGageID_TextChanged(sender As Object, e As EventArgs) Handles cboGageID.TextChanged
         If blnLoaded = True Then
             ApplyFilter()
         End If
     End Sub
 
-    Private Sub cboGageType_TextChanged(sender As Object, e As EventArgs) Handles cboGageType.TextChanged
+    Private Sub CboGageType_TextChanged(sender As Object, e As EventArgs) Handles cboGageType.TextChanged
         If blnLoaded = True Then
             ApplyFilter()
         End If
     End Sub
 
-    Private Sub cboPerformedBy_TextChanged(sender As Object, e As EventArgs) Handles cboPerformedBy.TextChanged
+    Private Sub CboPerformedBy_TextChanged(sender As Object, e As EventArgs) Handles cboPerformedBy.TextChanged
         If blnLoaded = True Then
             ApplyFilter()
         End If
@@ -278,12 +290,12 @@ Public Class frmAdminCalRecs
         Me.Close()
     End Sub
 
-    Private Sub tsmiAddNew_Click(sender As Object, e As EventArgs) Handles tsmiAddNew.Click
+    Private Sub TsmiAddNew_Click(sender As Object, e As EventArgs) Handles tsmiAddNew.Click
         sCalMode = "ADD"
         frmAddEditCalRec.Show()
     End Sub
 
-    Private Sub tsmiEditLastRecord_Click(sender As Object, e As EventArgs) Handles tsmiEditLastRecord.Click
+    Private Sub TsmiEditLastRecord_Click(sender As Object, e As EventArgs) Handles tsmiEditLastRecord.Click
         sCalMode = "EDIT"
         frmAddEditCalRec.Show()
     End Sub
@@ -296,6 +308,7 @@ Public Class frmAdminCalRecs
 
             iCurrentRow = dgvGageCalLog.CurrentCellAddress.Y
             sGageID = dgvGageCalLog(iColGageID, iCurrentRow).Value
+            sGageID = sGageID.ToUpper
             sGageDescription = dgvGageCalLog(iColDescription, iCurrentRow).Value
             lblCurrentGageID.Text = "Currently Selected Gage: " & sGageID
 
@@ -348,29 +361,31 @@ Public Class frmAdminCalRecs
             End If
             Impersonation.Undo()
 
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
 
-    Private Sub dgvGageCalLog_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGageCalLog.CellEnter
+    Private Sub DgvGageCalLog_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGageCalLog.CellEnter
         GetCurrentRowInfo()
     End Sub
 
-    Private Sub tsmiCalDataFromVendor_Click(sender As Object, e As EventArgs) Handles tsmiCalDataFromVendor.Click
+    Private Sub TsmiCalDataFromVendor_Click(sender As Object, e As EventArgs) Handles tsmiCalDataFromVendor.Click
         'Need to develope code for DTME supplied records
 
 
 
     End Sub
 
-    Private Sub tsmiCalFileCertifications_Click(sender As Object, e As EventArgs) Handles tsmiCalFileCertifications.Click
+    Private Sub TsmiCalFileCertifications_Click(sender As Object, e As EventArgs) Handles tsmiCalFileCertifications.Click
 
-        If dlgImportFiles.Visible = True Then
-            dlgImportFiles.Activate()
+        If DlgImportFiles.Visible = True Then
+            DlgImportFiles.Activate()
         Else
-            dlgImportFiles.Show()
+            DlgImportFiles.Show()
         End If
     End Sub
 
@@ -426,7 +441,7 @@ Public Class frmAdminCalRecs
 
             For Each Me.f In Directory.GetFiles(sDir, "*.*")
                 'iFileCnt = Me.f.Count
-                iFileCntr = iFileCntr + 1
+                iFileCntr += 1
                 ProgBarCal.Value = Math.Round((iFileCntr / FileCnt.Count) * 100, 0)
 
                 iStart = InStrRev(f, "\", -1)
@@ -480,7 +495,7 @@ Public Class frmAdminCalRecs
                                     vbCrLf & "or do you wish to keep Cal Date " & Format(dtLastCalDate, "MM/dd/yyyy") & "," &
                                     vbCrLf & "or do you wish to create a new calibration record using " & Format(dtCalibrationDate, "MM/dd/yyyy") & "?"
 
-                                    dlgChooseCalDate.ShowDialog()
+                                    DlgChooseCalDate.ShowDialog()
 
 
                                     If sMsgAns = "SpecDate" Then
@@ -534,8 +549,10 @@ Public Class frmAdminCalRecs
 
             ProgBarCal.Visible = False
 
-        Catch excpt As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
             ProgBarCal.Visible = False
         End Try
 
@@ -574,70 +591,89 @@ Public Class frmAdminCalRecs
     End Sub
 
     Private Sub UpdateMasterDueDate()
+        sModule = Me.Name
+        sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
 
-        'Check Date Due in tblGageCalMaster and update if newer
-        Dim CalMstr = From tblGageCalMaster In db.tblGageCalMasters
-                      Where tblGageCalMaster.GageID = CStr(sGageIDLog)
-        If Not IsNothing(CalMstr.First.Cal_Cycle) Then
-            sCalCycle = CalMstr.First.Cal_Cycle
-            sDurInc = Strings.Right(sCalCycle, 2)
-            iCyclQty = CInt(Strings.Left(sCalCycle, 2))
-            If Not IsNothing(CalMstr.First.DateDue) Then
-                dtOldDue = CDate(CalMstr.First.DateDue)
-            Else
-                dtOldDue = CDate("1/1/1990")
+        Try
+
+            'Check Date Due in tblGageCalMaster and update if newer
+            Dim CalMstr = From tblGageCalMaster In db.tblGageCalMasters
+                          Where tblGageCalMaster.GageID = CStr(sGageIDLog)
+            If Not IsNothing(CalMstr.First.Cal_Cycle) Then
+                sCalCycle = CalMstr.First.Cal_Cycle
+                sDurInc = Strings.Right(sCalCycle, 2)
+                iCyclQty = CInt(Strings.Left(sCalCycle, 2))
+                If Not IsNothing(CalMstr.First.DateDue) Then
+                    dtOldDue = CDate(CalMstr.First.DateDue)
+                Else
+                    dtOldDue = CDate("1/1/1990")
+                End If
+                If sDurInc = "Mo" Then
+                    dAddYr = iCyclQty / 12
+                ElseIf sDurInc = "Yr" Then
+                    dAddYr = iCyclQty
+                End If
+
+                'dtNewDue = CDate(Month(CDate(dtCalibrationDate).AddMonths(12 * dAddYr + 1)) & "/1/" &
+                'Year(CDate(dtCalibrationDate).AddMonths(12 * dAddYr + 1))).AddDays(-1)
+
+                dtNewDue = dtCalibrationDate.AddMonths(12 * dAddYr)
+
+                'Update DateDue if not equal
+                If dtNewDue <> dtOldDue Then
+                    For Each CM In CalMstr
+                        CM.DateDue = dtNewDue
+                        Exit For
+                    Next
+                    Try
+                        db.SubmitChanges()
+                    Catch
+                        MsgBox("Save Failed. Cal Due Date for " & sGageIDLog & " was not updated!", MsgBoxStyle.OkOnly, "Error")
+                    End Try
+                End If
             End If
-            If sDurInc = "Mo" Then
-                dAddYr = iCyclQty / 12
-            ElseIf sDurInc = "Yr" Then
-                dAddYr = iCyclQty
-            End If
 
-            'dtNewDue = CDate(Month(CDate(dtCalibrationDate).AddMonths(12 * dAddYr + 1)) & "/1/" &
-            'Year(CDate(dtCalibrationDate).AddMonths(12 * dAddYr + 1))).AddDays(-1)
-
-            dtNewDue = dtCalibrationDate.AddMonths(12 * dAddYr)
-
-            'Update DateDue if not equal
-            If dtNewDue <> dtOldDue Then
-                For Each CM In CalMstr
-                    CM.DateDue = dtNewDue
-                    Exit For
-                Next
-                Try
-                    db.SubmitChanges()
-                Catch
-                    MsgBox("Save Failed. Cal Due Date for " & sGageIDLog & " was not updated!", MsgBoxStyle.OkOnly, "Error")
-                End Try
-            End If
-        End If
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+        End Try
 
     End Sub
 
     Private Sub CopyCalFile()
         Dim msgRslt As DialogResult
+        sModule = Me.Name
+        sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
 
-        Dim Impersonation As New clsAuthenticator
-        Impersonation.Impersonator("NTCMI", sSAUser, sSAPW)
-        If My.Computer.FileSystem.FileExists("\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn) = False Then 'Copy File
-            My.Computer.FileSystem.CopyFile(f, "\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn)
-        Else 'Notify Uer of Duplicate File
-            'MsgBox("A Calibration File for " & sGageIDLog & " dated " & Format(dtCalibrationDate, "MM/dd/yyyy") & " already exists!" &
-            'vbCrLf & "This will not be copied into the database folder.", MsgBoxStyle.OkOnly, "Error")
+        Try
+            Dim Impersonation As New ClsAuthenticator
+            Impersonation.Impersonator("NTCMI", sSAUser, sSAPW)
+            If My.Computer.FileSystem.FileExists("\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn) = False Then 'Copy File
+                My.Computer.FileSystem.CopyFile(f, "\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn)
+            Else 'Notify Uer of Duplicate File
+                'MsgBox("A Calibration File for " & sGageIDLog & " dated " & Format(dtCalibrationDate, "MM/dd/yyyy") & " already exists!" &
+                'vbCrLf & "This will not be copied into the database folder.", MsgBoxStyle.OkOnly, "Error")
 
-            msgRslt = MessageBox.Show(Nothing, "A Calibration File for " & sGageIDLog & " dated " & Format(dtCalibrationDate, "MM/dd/yyyy") & " already exists!" &
+                msgRslt = MessageBox.Show(Nothing, "A Calibration File for " & sGageIDLog & " dated " & Format(dtCalibrationDate, "MM/dd/yyyy") & " already exists!" &
                                vbCrLf & "Do you wish to copy over the existing file?", "File Exists", MessageBoxButtons.YesNo,
                                      MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification)
-            If msgRslt = DialogResult.Yes Then
-                My.Computer.FileSystem.CopyFile(f, "\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn, True)
+                If msgRslt = DialogResult.Yes Then
+                    My.Computer.FileSystem.CopyFile(f, "\\Svrcorpfs03\ctcdb\Calibration\Certifications\" & sGageIDLog & "_" & sCalDateSave & "." & sFileExtn, True)
+                End If
             End If
-        End If
-        Impersonation.Undo()
+            Impersonation.Undo()
+
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
+        End Try
 
     End Sub
 
-    Private Sub frmAdminCalRecs_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        frmGageCalMain.Visible = True
+    Private Sub FrmAdminCalRecs_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        FrmGageCalMain.Visible = True
     End Sub
 
     Private Sub FileCertsForCurrentGageToYourPCToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FileCertsForCurrentGageToYourPCToolStripMenuItem.Click
@@ -663,7 +699,7 @@ Public Class frmAdminCalRecs
                 PrintToolStripMenuItem.Text = "Close Print"
                 If sPrinter <> "" Then
 
-                    HandleRptParams()
+                    HandleRptParams(rptCalLogs, "rptParamFilter", sFilter)
 
                     pgSettings = New System.Drawing.Printing.PageSettings()
                     pgSettings.PrinterSettings.PrinterName = sPrinter
@@ -696,26 +732,31 @@ Public Class frmAdminCalRecs
                 rptCalLogs.Visible = False
                 PrintToolStripMenuItem.Text = "Print"
             End If
-        Catch
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
-    Private Sub HandleRptParams()
 
-        rp.Name = "rptParamFilter"
-        If sFilter <> Nothing Then
-            sRptFilter = sFilter
-        Else
-            sRptFilter = "-"
+    Private Function GetMethodName(<System.Runtime.CompilerServices.CallerMemberName>
+    Optional memberName As String = Nothing) As String
+
+        Return memberName
+
+    End Function
+
+    Private Function GetLineNumber(ByVal ex As Exception)
+        Dim lineNumber As Int32 = 0
+        Const lineSearch As String = ":line "
+        Dim index = ex.StackTrace.LastIndexOf(lineSearch)
+        If index <> -1 Then
+            Dim lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length)
+            If Int32.TryParse(lineNumberText, lineNumber) Then
+            End If
         End If
-        rp.Values.Clear()
-        rp.Values.Add(sRptFilter)
-
-        'Set the report parameters for the report
-        Dim parameters() As ReportParameter = {rp}
-        rptCalLogs.LocalReport.SetParameters(parameters)
-
-    End Sub
+        Return lineNumber
+    End Function
 
 End Class

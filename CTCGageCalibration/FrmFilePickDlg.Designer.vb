@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmFilePickDlg
+Partial Class FrmFilePickDlg
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,12 +22,14 @@ Partial Class frmFilePickDlg
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFilePickDlg))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFilePickDlg))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.dgvFilePick = New System.Windows.Forms.DataGridView()
         Me.lblFileCopy = New System.Windows.Forms.Label()
+        Me.BtnChkAll = New System.Windows.Forms.Button()
+        Me.BtnUnChk = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgvFilePick, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -89,13 +91,33 @@ Partial Class frmFilePickDlg
         Me.lblFileCopy.Text = "There is more than one file to copy.  Select / Deselect as needed to copy the fil" &
     "es you want."
         '
-        'frmFilePickDlg
+        'BtnChkAll
+        '
+        Me.BtnChkAll.Location = New System.Drawing.Point(12, 277)
+        Me.BtnChkAll.Name = "BtnChkAll"
+        Me.BtnChkAll.Size = New System.Drawing.Size(102, 23)
+        Me.BtnChkAll.TabIndex = 4
+        Me.BtnChkAll.Text = "Check All"
+        Me.BtnChkAll.UseVisualStyleBackColor = True
+        '
+        'BtnUnChk
+        '
+        Me.BtnUnChk.Location = New System.Drawing.Point(126, 277)
+        Me.BtnUnChk.Name = "BtnUnChk"
+        Me.BtnUnChk.Size = New System.Drawing.Size(102, 23)
+        Me.BtnUnChk.TabIndex = 5
+        Me.BtnUnChk.Text = "Un-Check All"
+        Me.BtnUnChk.UseVisualStyleBackColor = True
+        '
+        'FrmFilePickDlg
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(517, 315)
+        Me.Controls.Add(Me.BtnUnChk)
+        Me.Controls.Add(Me.BtnChkAll)
         Me.Controls.Add(Me.lblFileCopy)
         Me.Controls.Add(Me.dgvFilePick)
         Me.Controls.Add(Me.TableLayoutPanel1)
@@ -103,7 +125,7 @@ Partial Class frmFilePickDlg
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmFilePickDlg"
+        Me.Name = "FrmFilePickDlg"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Pick File to Copy"
@@ -117,4 +139,6 @@ Partial Class frmFilePickDlg
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents dgvFilePick As DataGridView
     Friend WithEvents lblFileCopy As Label
+    Friend WithEvents BtnChkAll As Button
+    Friend WithEvents BtnUnChk As Button
 End Class

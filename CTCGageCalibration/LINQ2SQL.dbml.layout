@@ -8,12 +8,6 @@
         <elementListCompartment Id="e8543e17-78a9-439e-bdd5-e4b1348f3074" absoluteBounds="0.515, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d07eee93-bf03-4741-b214-598abfcc3408" isExpanded="false" absoluteBounds="0.5, 1.125, 2, 0.45">
-      <DataClassMoniker Name="/LINQ2SQLDataContext/tblGageCalMaster" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1d3568e3-1ded-43e4-94f9-7c0c3f52f81e" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="4f649bff-dcf2-44ff-881f-877d13117d8b" isExpanded="false" absoluteBounds="2.75, 0.5, 2, 0.45">
       <DataClassMoniker Name="/LINQ2SQLDataContext/tblGageCalRejctAction" />
       <nestedChildShapes>
@@ -44,16 +38,76 @@
         <elementListCompartment Id="3591dd41-bfd2-48fd-9132-4d7bce6c19a1" absoluteBounds="2.765, 1.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d55d8b4f-0e2a-4d2f-963e-b089ee319181" isExpanded="false" absoluteBounds="5, 0.5, 2, 0.45">
+    <classShape Id="44c726e6-3c8e-4f0e-a10f-de37e4a46fd5" isExpanded="false" absoluteBounds="5, 0.5, 2, 0.45">
       <DataClassMoniker Name="/LINQ2SQLDataContext/v_GageCalMaster" />
       <nestedChildShapes>
-        <elementListCompartment Id="a850ce15-e968-42d1-9a35-75cfc66be4a9" absoluteBounds="5.015, 0.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5dcf4394-c3db-44c5-aab7-9c41dfd4b4ad" absoluteBounds="5.015, 0.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7cd23fd1-4471-4915-a741-40012b24cac6" isExpanded="false" absoluteBounds="0.5, 2.375, 2, 0.45">
+    <classShape Id="9d00fa2d-1bd3-46ec-920b-66dc7bad7508" isExpanded="false" absoluteBounds="2.75, 2.375, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/GageMetric" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a79999ca-6ff7-415b-836f-31526c0f8b9b" absoluteBounds="2.7649999999999997, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f99f71dd-37f1-4634-96bd-e63448e4faa8" isExpanded="false" absoluteBounds="0.5, 2.375, 2, 0.45">
       <DataClassMoniker Name="/LINQ2SQLDataContext/tblSetting" />
       <nestedChildShapes>
-        <elementListCompartment Id="846e32d7-49ca-4148-b72e-9b34def31a26" absoluteBounds="0.51500000000000012, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7d1c93cf-10f3-46c6-9696-cfcf92c95870" absoluteBounds="0.515, 2.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e58738f8-234d-4c44-8e99-9836a7c9443e" isExpanded="false" absoluteBounds="5, 1.75, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="74add31b-553f-4d98-be7d-b5cb4d25dc21" absoluteBounds="5.015, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="77cf3977-23f2-4e1e-a653-b5aa7e39b8db" isExpanded="false" absoluteBounds="0.5, 1.125, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/tblGageCalMaster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bea94a15-68ee-4599-b32f-bf94d0d2afbc" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="08922f99-aa24-406a-b5b8-b6b242449dea" isExpanded="false" absoluteBounds="5, 2.375, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/tblCBOList" />
+      <nestedChildShapes>
+        <elementListCompartment Id="02043807-34c7-4dc4-9764-e95a4fd2665c" absoluteBounds="5.0150000000000006, 2.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f5b1687c-a74d-49ad-bcaf-7ff63893b646" isExpanded="false" absoluteBounds="0.5, 3, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdCrit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d90b60a7-9671-4ea3-aac8-c6b7a30ee4d0" absoluteBounds="0.51500000000000012, 3.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d5765557-8920-406e-87f3-5df3a29e3360" isExpanded="false" absoluteBounds="2.75, 3, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdEvntRslt" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d002e2b-893c-4e51-9b3b-ca35a98c7039" absoluteBounds="2.765, 3.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f8ec765-b706-481f-bcaf-4593441a0bbc" isExpanded="false" absoluteBounds="2.75, 3.625, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdXColHdr" />
+      <nestedChildShapes>
+        <elementListCompartment Id="46017b02-6738-425d-a5e9-4cb38a7afffb" absoluteBounds="2.765, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6594c0cf-02b0-44ac-9e96-9b1136f0cafd" isExpanded="false" absoluteBounds="0.5, 3.625, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdXColData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d2deb13-80ac-4fad-8663-43558856ccc8" absoluteBounds="0.51499999999999968, 4.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="13840b43-a0e0-4f66-99b2-17bdbfbd7513" isExpanded="false" absoluteBounds="5, 3.625, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdGagesUsed" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c3b0cc1a-7f5c-4037-b8f9-d564cce38f02" absoluteBounds="5.015, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93c34b5a-a3b5-42ed-874f-741c02a4c657" isExpanded="false" absoluteBounds="5, 3, 2, 0.45">
+      <DataClassMoniker Name="/LINQ2SQLDataContext/TblGageValdEvnt" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7bee660d-e4be-41bb-b4ac-bbb74d129d16" absoluteBounds="5.015, 3.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

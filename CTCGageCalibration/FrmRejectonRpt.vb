@@ -172,4 +172,24 @@
         End If
 
     End Sub
+    Private Function GetMethodName(<System.Runtime.CompilerServices.CallerMemberName>
+    Optional memberName As String = Nothing) As String
+
+        Return memberName
+
+    End Function
+
+    Private Function GetLineNumber(ByVal ex As Exception)
+        Dim lineNumber As Int32 = 0
+        Const lineSearch As String = ":line "
+        Dim index = ex.StackTrace.LastIndexOf(lineSearch)
+        If index <> -1 Then
+            Dim lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length)
+            If Int32.TryParse(lineNumberText, lineNumber) Then
+            End If
+        End If
+        Return lineNumber
+    End Function
+
+
 End Class

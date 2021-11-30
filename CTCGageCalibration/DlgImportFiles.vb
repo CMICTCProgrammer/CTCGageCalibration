@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 
-Public Class dlgImportFiles
-    Private Sub dlgImportFiles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+Public Class DlgImportFiles
+    Private Sub DlgImportFiles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillCboPerformedBy()
         dtCalDate.Value = Today
         dtCalibrationDate = Today
@@ -40,13 +40,15 @@ Public Class dlgImportFiles
                 End If
             Next
             cboPerformedBy.Text = ""
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
 
-    Private Sub dtCalDate_ValueChanged(sender As Object, e As EventArgs) Handles dtCalDate.ValueChanged
+    Private Sub DtCalDate_ValueChanged(sender As Object, e As EventArgs) Handles dtCalDate.ValueChanged
         dtCalibrationDate = dtCalDate.Value
     End Sub
 
@@ -58,7 +60,7 @@ Public Class dlgImportFiles
         End If
     End Sub
 
-    Private Sub cboPerformedBy_TextChanged(sender As Object, e As EventArgs) Handles cboPerformedBy.TextChanged
+    Private Sub CboPerformedBy_TextChanged(sender As Object, e As EventArgs) Handles cboPerformedBy.TextChanged
         If cboPerformedBy.Text <> "" Then
             sPerfBy = cboPerformedBy.Text
         End If
@@ -66,7 +68,7 @@ Public Class dlgImportFiles
         ValidateSave()
     End Sub
 
-    Private Sub chkPass_CheckedChanged(sender As Object, e As EventArgs) Handles chkPass.CheckedChanged
+    Private Sub ChkPass_CheckedChanged(sender As Object, e As EventArgs) Handles chkPass.CheckedChanged
 
         If chkPass.CheckState = CheckState.Checked Then
             sResult = "Pass"
@@ -74,5 +76,24 @@ Public Class dlgImportFiles
             sResult = "Fail"
         End If
     End Sub
+    Private Function GetMethodName(<System.Runtime.CompilerServices.CallerMemberName>
+    Optional memberName As String = Nothing) As String
+
+        Return memberName
+
+    End Function
+
+    Private Function GetLineNumber(ByVal ex As Exception)
+        Dim lineNumber As Int32 = 0
+        Const lineSearch As String = ":line "
+        Dim index = ex.StackTrace.LastIndexOf(lineSearch)
+        If index <> -1 Then
+            Dim lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length)
+            If Int32.TryParse(lineNumberText, lineNumber) Then
+            End If
+        End If
+        Return lineNumber
+    End Function
+
 
 End Class

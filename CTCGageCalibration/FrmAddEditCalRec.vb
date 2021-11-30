@@ -1,9 +1,9 @@
-﻿Public Class frmAddEditCalRec
+﻿Public Class FrmAddEditCalRec
     Dim sSaveErr As String
     Dim blnSaveOK As Boolean = False
     Dim dtLastCalDate As Date
 
-    Private Sub frmAddCal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmAddCal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillCalLog()
         ValidateCalSave()
     End Sub
@@ -26,7 +26,7 @@
             End If
 
             If sCalMode = "ADD" Then
-                Me.Text = "Add a New Calibration Record"
+                Me.Text = "Add a New Calibration or Validation Record"
                 cboPerformedBy.Items.Clear()
                 'Create items for cboPerformedBy
                 Dim cboCalBy = From tblGageCalLog In db.tblGageCalLogs
@@ -50,7 +50,7 @@
 
 
             ElseIf sCalMode = "EDIT" Then
-                Me.Text = "Edit Calibration Record"
+                Me.Text = "Edit a Calibration or Validation Record"
                 Dim CalLast = (From tblGageCalLog In db.tblGageCalLogs
                                Where tblGageCalLog.GageID = sGageID
                                Select tblGageCalLog.CalDate).Max
@@ -74,13 +74,15 @@
             End If
             txtGageID.Enabled = False
             txtGageDescription.Enabled = False
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
 
-    Private Sub btnSaveCal_Click(sender As Object, e As EventArgs) Handles btnSaveCal.Click
+    Private Sub BtnSaveCal_Click(sender As Object, e As EventArgs) Handles btnSaveCal.Click
         sModule = Me.Name
         sLoc = System.Reflection.MethodBase.GetCurrentMethod.Name
 
@@ -91,7 +93,7 @@
 
                     'Save New Calibration to tblGageCalLog
                     Dim CL As New tblGageCalLog With {
-                .GageID = txtGageID.Text,
+                .GageID = txtGageID.Text.ToUpper,
                 .CalDate = dtCalDate.Value,
                 .CalNotes = txtCalNotes.Text,
                 .PassFail = cboPassFail.Text,
@@ -113,7 +115,7 @@
                     Dim CalLog = From tblGageCalLog In db.tblGageCalLogs
                                  Where tblGageCalLog.GageID = sGageID And tblGageCalLog.CalDate = dtLastCalDate
                     For Each CL In CalLog
-                        CL.GageID = txtGageID.Text
+                        CL.GageID = txtGageID.Text.ToUpper
                         CL.CalDate = dtCalDate.Value
                         CL.CalNotes = txtCalNotes.Text
                         CL.PassFail = cboPassFail.Text
@@ -128,14 +130,16 @@
                         Me.Close()
                     End Try
                     MsgBox("Saved Successfully", MsgBoxStyle.OkOnly, "Save OK")
-                    frmGageCalMain.ChkRejections()
+                    FrmGageCalMain.ChkRejections()
                     Me.Close()
                 End If
             Else
                 MsgBox(sSaveErr, MsgBoxStyle.OkOnly, "Error")
             End If
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -151,10 +155,10 @@
                 sSaveErr = "'Performed By' Is Blank - "
             End If
             If dtCalDate.Text = "" Then
-                sSaveErr = sSaveErr & "'Calibration Date' Is Blank - "
+                sSaveErr += "'Calibration Date' Is Blank - "
             End If
             If Not (cboPassFail.Text = "Pass" Or cboPassFail.Text = "Fail") Then
-                sSaveErr = sSaveErr & "'Pass/Fail' Needs to Show 'Pass' or 'Fail' "
+                sSaveErr += "'Pass/Fail' Needs to Show 'Pass' or 'Fail' "
             End If
 
             If cboPerformedBy.Text <> "" And
@@ -169,8 +173,10 @@
             End If
 
             SetToolTip()
-        Catch ex As System.Exception
-            ErrorLog(Err.Number, Err.Description)
+        Catch Ex As Exception
+            sModule = Me.Name
+            sLoc = GetMethodName() & " On line-" & GetLineNumber(Ex)
+            modVBCode.ErrorLog(Err.Number, Err.Description, sModule, sLoc)
         End Try
 
     End Sub
@@ -189,15 +195,41 @@
 
     End Sub
 
-    Private Sub cboPerformedBy_TextUpdate(sender As Object, e As EventArgs) Handles cboPerformedBy.TextUpdate
+    Private Sub CboPerformedBy_TextUpdate(sender As Object, e As EventArgs) Handles cboPerformedBy.TextUpdate
         ValidateCalSave()
     End Sub
 
-    Private Sub dtCalDate_ValueChanged(sender As Object, e As EventArgs) Handles dtCalDate.ValueChanged
+    Private Sub DtCalDate_ValueChanged(sender As Object, e As EventArgs) Handles dtCalDate.ValueChanged
         ValidateCalSave()
     End Sub
 
-    Private Sub cboPassFail_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboPassFail.SelectedValueChanged
+    Private Sub CboPassFail_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboPassFail.SelectedValueChanged
         ValidateCalSave()
+    End Sub
+    Private Function GetMethodName(<System.Runtime.CompilerServices.CallerMemberName>
+    Optional memberName As String = Nothing) As String
+
+        Return memberName
+
+    End Function
+
+    Private Function GetLineNumber(ByVal ex As Exception)
+        Dim lineNumber As Int32 = 0
+        Const lineSearch As String = ":line "
+        Dim index = ex.StackTrace.LastIndexOf(lineSearch)
+        If index <> -1 Then
+            Dim lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length)
+            If Int32.TryParse(lineNumberText, lineNumber) Then
+            End If
+        End If
+        Return lineNumber
+    End Function
+
+    Private Sub CboCalVal_SelectedValueChanged(sender As Object, e As EventArgs) Handles CboCalVal.SelectedValueChanged
+        If CboCalVal.Text = "Validation" Then
+            BtnValdFrm.Visible = True
+        Else
+            BtnValdFrm.Visible = False
+        End If
     End Sub
 End Class

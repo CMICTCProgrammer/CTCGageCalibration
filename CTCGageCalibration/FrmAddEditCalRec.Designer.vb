@@ -38,12 +38,15 @@ Partial Class frmAddEditCalRec
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ToolTipsCal = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnSaveCal = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CboCalVal = New System.Windows.Forms.ComboBox()
+        Me.BtnValdFrm = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(29, 22)
+        Me.Label1.Location = New System.Drawing.Point(29, 56)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(47, 13)
         Me.Label1.TabIndex = 2
@@ -52,16 +55,16 @@ Partial Class frmAddEditCalRec
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(26, 69)
+        Me.Label3.Location = New System.Drawing.Point(29, 99)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(122, 13)
+        Me.Label3.Size = New System.Drawing.Size(70, 13)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Calibration Performed By"
+        Me.Label3.Text = "Performed By"
         '
         'dtCalDate
         '
         Me.dtCalDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtCalDate.Location = New System.Drawing.Point(236, 86)
+        Me.dtCalDate.Location = New System.Drawing.Point(236, 114)
         Me.dtCalDate.Name = "dtCalDate"
         Me.dtCalDate.Size = New System.Drawing.Size(140, 20)
         Me.dtCalDate.TabIndex = 6
@@ -70,7 +73,7 @@ Partial Class frmAddEditCalRec
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(233, 70)
+        Me.Label4.Location = New System.Drawing.Point(233, 99)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(82, 13)
         Me.Label4.TabIndex = 7
@@ -79,7 +82,7 @@ Partial Class frmAddEditCalRec
         'cboPerformedBy
         '
         Me.cboPerformedBy.FormattingEnabled = True
-        Me.cboPerformedBy.Location = New System.Drawing.Point(29, 85)
+        Me.cboPerformedBy.Location = New System.Drawing.Point(29, 113)
         Me.cboPerformedBy.Name = "cboPerformedBy"
         Me.cboPerformedBy.Size = New System.Drawing.Size(201, 21)
         Me.cboPerformedBy.TabIndex = 8
@@ -87,15 +90,15 @@ Partial Class frmAddEditCalRec
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(26, 124)
+        Me.Label5.Location = New System.Drawing.Point(29, 143)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(87, 13)
+        Me.Label5.Size = New System.Drawing.Size(35, 13)
         Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Calibration Notes"
+        Me.Label5.Text = "Notes"
         '
         'txtCalNotes
         '
-        Me.txtCalNotes.Location = New System.Drawing.Point(29, 139)
+        Me.txtCalNotes.Location = New System.Drawing.Point(29, 157)
         Me.txtCalNotes.Multiline = True
         Me.txtCalNotes.Name = "txtCalNotes"
         Me.txtCalNotes.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -106,7 +109,7 @@ Partial Class frmAddEditCalRec
         '
         Me.cboPassFail.FormattingEnabled = True
         Me.cboPassFail.Items.AddRange(New Object() {"", "Pass", "Fail"})
-        Me.cboPassFail.Location = New System.Drawing.Point(29, 272)
+        Me.cboPassFail.Location = New System.Drawing.Point(29, 282)
         Me.cboPassFail.Name = "cboPassFail"
         Me.cboPassFail.Size = New System.Drawing.Size(84, 21)
         Me.cboPassFail.TabIndex = 11
@@ -114,7 +117,7 @@ Partial Class frmAddEditCalRec
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(29, 257)
+        Me.Label6.Location = New System.Drawing.Point(29, 268)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(57, 13)
         Me.Label6.TabIndex = 12
@@ -123,7 +126,7 @@ Partial Class frmAddEditCalRec
         'txtGageID
         '
         Me.txtGageID.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtGageID.Location = New System.Drawing.Point(32, 36)
+        Me.txtGageID.Location = New System.Drawing.Point(29, 70)
         Me.txtGageID.Name = "txtGageID"
         Me.txtGageID.Size = New System.Drawing.Size(81, 20)
         Me.txtGageID.TabIndex = 13
@@ -131,7 +134,7 @@ Partial Class frmAddEditCalRec
         'txtGageDescription
         '
         Me.txtGageDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtGageDescription.Location = New System.Drawing.Point(119, 36)
+        Me.txtGageDescription.Location = New System.Drawing.Point(117, 70)
         Me.txtGageDescription.Name = "txtGageDescription"
         Me.txtGageDescription.Size = New System.Drawing.Size(257, 20)
         Me.txtGageDescription.TabIndex = 15
@@ -139,7 +142,7 @@ Partial Class frmAddEditCalRec
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(116, 22)
+        Me.Label7.Location = New System.Drawing.Point(114, 56)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(89, 13)
         Me.Label7.TabIndex = 16
@@ -147,18 +150,51 @@ Partial Class frmAddEditCalRec
         '
         'btnSaveCal
         '
-        Me.btnSaveCal.Location = New System.Drawing.Point(301, 270)
+        Me.btnSaveCal.Location = New System.Drawing.Point(301, 282)
         Me.btnSaveCal.Name = "btnSaveCal"
         Me.btnSaveCal.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveCal.TabIndex = 17
         Me.btnSaveCal.Text = "Save"
         Me.btnSaveCal.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(29, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(123, 13)
+        Me.Label2.TabIndex = 19
+        Me.Label2.Text = "Calibration or Validation?"
+        Me.Label2.Visible = False
+        '
+        'CboCalVal
+        '
+        Me.CboCalVal.FormattingEnabled = True
+        Me.CboCalVal.Items.AddRange(New Object() {"", "Calibration", "Validation"})
+        Me.CboCalVal.Location = New System.Drawing.Point(29, 26)
+        Me.CboCalVal.Name = "CboCalVal"
+        Me.CboCalVal.Size = New System.Drawing.Size(159, 21)
+        Me.CboCalVal.TabIndex = 18
+        Me.CboCalVal.Visible = False
+        '
+        'BtnValdFrm
+        '
+        Me.BtnValdFrm.Location = New System.Drawing.Point(205, 25)
+        Me.BtnValdFrm.Name = "BtnValdFrm"
+        Me.BtnValdFrm.Size = New System.Drawing.Size(169, 23)
+        Me.BtnValdFrm.TabIndex = 20
+        Me.BtnValdFrm.Text = "Enter Validation Data"
+        Me.BtnValdFrm.UseVisualStyleBackColor = True
+        Me.BtnValdFrm.Visible = False
+        '
         'frmAddEditCalRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(402, 315)
+        Me.Controls.Add(Me.BtnValdFrm)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.CboCalVal)
         Me.Controls.Add(Me.btnSaveCal)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtGageDescription)
@@ -178,7 +214,7 @@ Partial Class frmAddEditCalRec
         Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(418, 354)
         Me.Name = "frmAddEditCalRec"
-        Me.Text = "Add a New Calibration Record"
+        Me.Text = "Add a New Calibration or Validation Record"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -197,4 +233,7 @@ Partial Class frmAddEditCalRec
     Friend WithEvents Label7 As Label
     Friend WithEvents ToolTipsCal As ToolTip
     Friend WithEvents btnSaveCal As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents CboCalVal As ComboBox
+    Friend WithEvents BtnValdFrm As Button
 End Class

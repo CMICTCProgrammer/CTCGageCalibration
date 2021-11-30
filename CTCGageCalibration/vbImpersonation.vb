@@ -5,7 +5,7 @@ Imports System
 Imports System.Runtime.InteropServices '   DllImport
 Imports System.Security.Principal '  WindowsImpersonationContext
 
-Public Class clsAuthenticator
+Public Class ClsAuthenticator
 
     ' group type enum
     Enum SECURITY_IMPERSONATION_LEVEL As Int32
@@ -134,6 +134,8 @@ Public Class clsAuthenticator
     End Sub
 
     Public Sub Undo()
-        newUser.Undo()
+        If Not (newUser Is Nothing) Then
+            newUser.Undo()
+        End If
     End Sub
 End Class

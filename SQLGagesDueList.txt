@@ -1,0 +1,7 @@
+SELECT        'OverDue' AS CalStatus, GageID, Description, datediff(day, { fn NOW() }, DateDue) AS DaysToCal, DateDue, Location_Assignee
+FROM            dbo.tblGageCalMaster
+WHERE        (Status = 'IN SERVICE') AND (DateDue <= { fn NOW() })
+UNION
+SELECT        'NearDue' AS CalStatus, GageID, Description, datediff(day, { fn NOW() }, DateDue) AS DaysToCal, DateDue, Location_Assignee
+FROM            dbo.tblGageCalMaster
+WHERE        (Status = 'IN SERVICE') AND (DateDue < { fn NOW() } + 60) AND (DateDue > { fn NOW() })

@@ -37,12 +37,6 @@ Partial Public Class LINQ2SQLDataContext
     End Sub
   Partial Private Sub DeletetblGageCalLog(instance As tblGageCalLog)
     End Sub
-  Partial Private Sub InserttblGageCalMaster(instance As tblGageCalMaster)
-    End Sub
-  Partial Private Sub UpdatetblGageCalMaster(instance As tblGageCalMaster)
-    End Sub
-  Partial Private Sub DeletetblGageCalMaster(instance As tblGageCalMaster)
-    End Sub
   Partial Private Sub InserttblGageCalRejctAction(instance As tblGageCalRejctAction)
     End Sub
   Partial Private Sub UpdatetblGageCalRejctAction(instance As tblGageCalRejctAction)
@@ -61,16 +55,76 @@ Partial Public Class LINQ2SQLDataContext
     End Sub
   Partial Private Sub DeletetblUser(instance As tblUser)
     End Sub
+  Partial Private Sub InsertGageMetric(instance As GageMetric)
+    End Sub
+  Partial Private Sub UpdateGageMetric(instance As GageMetric)
+    End Sub
+  Partial Private Sub DeleteGageMetric(instance As GageMetric)
+    End Sub
   Partial Private Sub InserttblSetting(instance As tblSetting)
     End Sub
   Partial Private Sub UpdatetblSetting(instance As tblSetting)
     End Sub
   Partial Private Sub DeletetblSetting(instance As tblSetting)
     End Sub
+  Partial Private Sub InsertTblGageGroup(instance As TblGageGroup)
+    End Sub
+  Partial Private Sub UpdateTblGageGroup(instance As TblGageGroup)
+    End Sub
+  Partial Private Sub DeleteTblGageGroup(instance As TblGageGroup)
+    End Sub
+  Partial Private Sub InserttblGageCalMaster(instance As tblGageCalMaster)
+    End Sub
+  Partial Private Sub UpdatetblGageCalMaster(instance As tblGageCalMaster)
+    End Sub
+  Partial Private Sub DeletetblGageCalMaster(instance As tblGageCalMaster)
+    End Sub
+  Partial Private Sub InserttblCBOList(instance As tblCBOList)
+    End Sub
+  Partial Private Sub UpdatetblCBOList(instance As tblCBOList)
+    End Sub
+  Partial Private Sub DeletetblCBOList(instance As tblCBOList)
+    End Sub
+  Partial Private Sub InsertTblGageValdCrit(instance As TblGageValdCrit)
+    End Sub
+  Partial Private Sub UpdateTblGageValdCrit(instance As TblGageValdCrit)
+    End Sub
+  Partial Private Sub DeleteTblGageValdCrit(instance As TblGageValdCrit)
+    End Sub
+  Partial Private Sub InsertTblGageValdEvntRslt(instance As TblGageValdEvntRslt)
+    End Sub
+  Partial Private Sub UpdateTblGageValdEvntRslt(instance As TblGageValdEvntRslt)
+    End Sub
+  Partial Private Sub DeleteTblGageValdEvntRslt(instance As TblGageValdEvntRslt)
+    End Sub
+  Partial Private Sub InsertTblGageValdXColHdr(instance As TblGageValdXColHdr)
+    End Sub
+  Partial Private Sub UpdateTblGageValdXColHdr(instance As TblGageValdXColHdr)
+    End Sub
+  Partial Private Sub DeleteTblGageValdXColHdr(instance As TblGageValdXColHdr)
+    End Sub
+  Partial Private Sub InsertTblGageValdXColData(instance As TblGageValdXColData)
+    End Sub
+  Partial Private Sub UpdateTblGageValdXColData(instance As TblGageValdXColData)
+    End Sub
+  Partial Private Sub DeleteTblGageValdXColData(instance As TblGageValdXColData)
+    End Sub
+  Partial Private Sub InsertTblGageValdGagesUsed(instance As TblGageValdGagesUsed)
+    End Sub
+  Partial Private Sub UpdateTblGageValdGagesUsed(instance As TblGageValdGagesUsed)
+    End Sub
+  Partial Private Sub DeleteTblGageValdGagesUsed(instance As TblGageValdGagesUsed)
+    End Sub
+  Partial Private Sub InsertTblGageValdEvnt(instance As TblGageValdEvnt)
+    End Sub
+  Partial Private Sub UpdateTblGageValdEvnt(instance As TblGageValdEvnt)
+    End Sub
+  Partial Private Sub DeleteTblGageValdEvnt(instance As TblGageValdEvnt)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.CTCGageCalibration.My.MySettings.Default.TestCenterrDataSet, mappingSource)
+		MyBase.New(Global.CTCGageCalibration.My.MySettings.Default.TestCenterDataSet, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -97,12 +151,6 @@ Partial Public Class LINQ2SQLDataContext
 	Public ReadOnly Property tblGageCalLogs() As System.Data.Linq.Table(Of tblGageCalLog)
 		Get
 			Return Me.GetTable(Of tblGageCalLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property tblGageCalMasters() As System.Data.Linq.Table(Of tblGageCalMaster)
-		Get
-			Return Me.GetTable(Of tblGageCalMaster)
 		End Get
 	End Property
 	
@@ -142,9 +190,69 @@ Partial Public Class LINQ2SQLDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property GageMetrics() As System.Data.Linq.Table(Of GageMetric)
+		Get
+			Return Me.GetTable(Of GageMetric)
+		End Get
+	End Property
+	
 	Public ReadOnly Property tblSettings() As System.Data.Linq.Table(Of tblSetting)
 		Get
 			Return Me.GetTable(Of tblSetting)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageGroups() As System.Data.Linq.Table(Of TblGageGroup)
+		Get
+			Return Me.GetTable(Of TblGageGroup)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblGageCalMasters() As System.Data.Linq.Table(Of tblGageCalMaster)
+		Get
+			Return Me.GetTable(Of tblGageCalMaster)
+		End Get
+	End Property
+	
+	Public ReadOnly Property tblCBOLists() As System.Data.Linq.Table(Of tblCBOList)
+		Get
+			Return Me.GetTable(Of tblCBOList)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdCrits() As System.Data.Linq.Table(Of TblGageValdCrit)
+		Get
+			Return Me.GetTable(Of TblGageValdCrit)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdEvntRslts() As System.Data.Linq.Table(Of TblGageValdEvntRslt)
+		Get
+			Return Me.GetTable(Of TblGageValdEvntRslt)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdXColHdrs() As System.Data.Linq.Table(Of TblGageValdXColHdr)
+		Get
+			Return Me.GetTable(Of TblGageValdXColHdr)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdXColDatas() As System.Data.Linq.Table(Of TblGageValdXColData)
+		Get
+			Return Me.GetTable(Of TblGageValdXColData)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdGagesUseds() As System.Data.Linq.Table(Of TblGageValdGagesUsed)
+		Get
+			Return Me.GetTable(Of TblGageValdGagesUsed)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGageValdEvnts() As System.Data.Linq.Table(Of TblGageValdEvnt)
+		Get
+			Return Me.GetTable(Of TblGageValdEvnt)
 		End Get
 	End Property
 End Class
@@ -299,353 +407,6 @@ Partial Public Class tblGageCalLog
 				Me._PassFail = value
 				Me.SendPropertyChanged("PassFail")
 				Me.OnPassFailChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblGageCalMaster")>  _
-Partial Public Class tblGageCalMaster
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _GageID As String
-	
-	Private _Description As String
-	
-	Private _Manufacturer As String
-	
-	Private _Model_Serial As String
-	
-	Private _Details_Size As String
-	
-	Private _Accuracy As String
-	
-	Private _Location_Assignee As String
-	
-	Private _Status As String
-	
-	Private _Cal_Cycle As String
-	
-	Private _Cal_Instructions As String
-	
-	Private _GageNotes As String
-	
-	Private _DateDue As System.Nullable(Of Date)
-	
-	Private _GageType As String
-	
-	Private _LocEntityID As System.Nullable(Of Integer)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnGageIDChanging(value As String)
-    End Sub
-    Partial Private Sub OnGageIDChanged()
-    End Sub
-    Partial Private Sub OnDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnDescriptionChanged()
-    End Sub
-    Partial Private Sub OnManufacturerChanging(value As String)
-    End Sub
-    Partial Private Sub OnManufacturerChanged()
-    End Sub
-    Partial Private Sub OnModel_SerialChanging(value As String)
-    End Sub
-    Partial Private Sub OnModel_SerialChanged()
-    End Sub
-    Partial Private Sub OnDetails_SizeChanging(value As String)
-    End Sub
-    Partial Private Sub OnDetails_SizeChanged()
-    End Sub
-    Partial Private Sub OnAccuracyChanging(value As String)
-    End Sub
-    Partial Private Sub OnAccuracyChanged()
-    End Sub
-    Partial Private Sub OnLocation_AssigneeChanging(value As String)
-    End Sub
-    Partial Private Sub OnLocation_AssigneeChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As String)
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    Partial Private Sub OnCal_CycleChanging(value As String)
-    End Sub
-    Partial Private Sub OnCal_CycleChanged()
-    End Sub
-    Partial Private Sub OnCal_InstructionsChanging(value As String)
-    End Sub
-    Partial Private Sub OnCal_InstructionsChanged()
-    End Sub
-    Partial Private Sub OnGageNotesChanging(value As String)
-    End Sub
-    Partial Private Sub OnGageNotesChanged()
-    End Sub
-    Partial Private Sub OnDateDueChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnDateDueChanged()
-    End Sub
-    Partial Private Sub OnGageTypeChanging(value As String)
-    End Sub
-    Partial Private Sub OnGageTypeChanged()
-    End Sub
-    Partial Private Sub OnLocEntityIDChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnLocEntityIDChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageID", DbType:="VarChar(20) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
-	Public Property GageID() As String
-		Get
-			Return Me._GageID
-		End Get
-		Set
-			If (String.Equals(Me._GageID, value) = false) Then
-				Me.OnGageIDChanging(value)
-				Me.SendPropertyChanging
-				Me._GageID = value
-				Me.SendPropertyChanged("GageID")
-				Me.OnGageIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="VarChar(60)")>  _
-	Public Property Description() As String
-		Get
-			Return Me._Description
-		End Get
-		Set
-			If (String.Equals(Me._Description, value) = false) Then
-				Me.OnDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._Description = value
-				Me.SendPropertyChanged("Description")
-				Me.OnDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Manufacturer", DbType:="VarChar(60)")>  _
-	Public Property Manufacturer() As String
-		Get
-			Return Me._Manufacturer
-		End Get
-		Set
-			If (String.Equals(Me._Manufacturer, value) = false) Then
-				Me.OnManufacturerChanging(value)
-				Me.SendPropertyChanging
-				Me._Manufacturer = value
-				Me.SendPropertyChanged("Manufacturer")
-				Me.OnManufacturerChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Model_Serial", DbType:="VarChar(60)")>  _
-	Public Property Model_Serial() As String
-		Get
-			Return Me._Model_Serial
-		End Get
-		Set
-			If (String.Equals(Me._Model_Serial, value) = false) Then
-				Me.OnModel_SerialChanging(value)
-				Me.SendPropertyChanging
-				Me._Model_Serial = value
-				Me.SendPropertyChanged("Model_Serial")
-				Me.OnModel_SerialChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Details_Size", DbType:="VarChar(60)")>  _
-	Public Property Details_Size() As String
-		Get
-			Return Me._Details_Size
-		End Get
-		Set
-			If (String.Equals(Me._Details_Size, value) = false) Then
-				Me.OnDetails_SizeChanging(value)
-				Me.SendPropertyChanging
-				Me._Details_Size = value
-				Me.SendPropertyChanged("Details_Size")
-				Me.OnDetails_SizeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Accuracy", DbType:="VarChar(60)")>  _
-	Public Property Accuracy() As String
-		Get
-			Return Me._Accuracy
-		End Get
-		Set
-			If (String.Equals(Me._Accuracy, value) = false) Then
-				Me.OnAccuracyChanging(value)
-				Me.SendPropertyChanging
-				Me._Accuracy = value
-				Me.SendPropertyChanged("Accuracy")
-				Me.OnAccuracyChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Location_Assignee", DbType:="VarChar(60)")>  _
-	Public Property Location_Assignee() As String
-		Get
-			Return Me._Location_Assignee
-		End Get
-		Set
-			If (String.Equals(Me._Location_Assignee, value) = false) Then
-				Me.OnLocation_AssigneeChanging(value)
-				Me.SendPropertyChanging
-				Me._Location_Assignee = value
-				Me.SendPropertyChanged("Location_Assignee")
-				Me.OnLocation_AssigneeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="VarChar(60)")>  _
-	Public Property Status() As String
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If (String.Equals(Me._Status, value) = false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cal_Cycle", DbType:="VarChar(20)")>  _
-	Public Property Cal_Cycle() As String
-		Get
-			Return Me._Cal_Cycle
-		End Get
-		Set
-			If (String.Equals(Me._Cal_Cycle, value) = false) Then
-				Me.OnCal_CycleChanging(value)
-				Me.SendPropertyChanging
-				Me._Cal_Cycle = value
-				Me.SendPropertyChanged("Cal_Cycle")
-				Me.OnCal_CycleChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cal_Instructions", DbType:="VarChar(MAX)")>  _
-	Public Property Cal_Instructions() As String
-		Get
-			Return Me._Cal_Instructions
-		End Get
-		Set
-			If (String.Equals(Me._Cal_Instructions, value) = false) Then
-				Me.OnCal_InstructionsChanging(value)
-				Me.SendPropertyChanging
-				Me._Cal_Instructions = value
-				Me.SendPropertyChanged("Cal_Instructions")
-				Me.OnCal_InstructionsChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageNotes", DbType:="VarChar(MAX)")>  _
-	Public Property GageNotes() As String
-		Get
-			Return Me._GageNotes
-		End Get
-		Set
-			If (String.Equals(Me._GageNotes, value) = false) Then
-				Me.OnGageNotesChanging(value)
-				Me.SendPropertyChanging
-				Me._GageNotes = value
-				Me.SendPropertyChanged("GageNotes")
-				Me.OnGageNotesChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateDue", DbType:="Date")>  _
-	Public Property DateDue() As System.Nullable(Of Date)
-		Get
-			Return Me._DateDue
-		End Get
-		Set
-			If (Me._DateDue.Equals(value) = false) Then
-				Me.OnDateDueChanging(value)
-				Me.SendPropertyChanging
-				Me._DateDue = value
-				Me.SendPropertyChanged("DateDue")
-				Me.OnDateDueChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageType", DbType:="VarChar(20)")>  _
-	Public Property GageType() As String
-		Get
-			Return Me._GageType
-		End Get
-		Set
-			If (String.Equals(Me._GageType, value) = false) Then
-				Me.OnGageTypeChanging(value)
-				Me.SendPropertyChanging
-				Me._GageType = value
-				Me.SendPropertyChanged("GageType")
-				Me.OnGageTypeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocEntityID", DbType:="Int")>  _
-	Public Property LocEntityID() As System.Nullable(Of Integer)
-		Get
-			Return Me._LocEntityID
-		End Get
-		Set
-			If (Me._LocEntityID.Equals(value) = false) Then
-				Me.OnLocEntityIDChanging(value)
-				Me.SendPropertyChanging
-				Me._LocEntityID = value
-				Me.SendPropertyChanged("LocEntityID")
-				Me.OnLocEntityIDChanged
 			End If
 		End Set
 	End Property
@@ -1889,6 +1650,8 @@ Partial Public Class v_GageCalMaster
 	
 	Private _Today As Date
 	
+	Private _OvrDue As Integer
+	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -2086,6 +1849,214 @@ Partial Public Class v_GageCalMaster
 			End If
 		End Set
 	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OvrDue", DbType:="Int NOT NULL")>  _
+	Public Property OvrDue() As Integer
+		Get
+			Return Me._OvrDue
+		End Get
+		Set
+			If ((Me._OvrDue = value)  _
+						= false) Then
+				Me._OvrDue = value
+			End If
+		End Set
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.GageMetrics")>  _
+Partial Public Class GageMetric
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _id As Integer
+	
+	Private _date As Date
+	
+	Private _Gages_Due As System.Nullable(Of Integer)
+	
+	Private _Gages_Overdue As System.Nullable(Of Integer)
+	
+	Private _Gages_In_Service As System.Nullable(Of Integer)
+	
+	Private _Gages_Ref_Only As System.Nullable(Of Integer)
+	
+	Private _Gages_Out_Service As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnidChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnidChanged()
+    End Sub
+    Partial Private Sub OndateChanging(value As Date)
+    End Sub
+    Partial Private Sub OndateChanged()
+    End Sub
+    Partial Private Sub OnGages_DueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGages_DueChanged()
+    End Sub
+    Partial Private Sub OnGages_OverdueChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGages_OverdueChanged()
+    End Sub
+    Partial Private Sub OnGages_In_ServiceChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGages_In_ServiceChanged()
+    End Sub
+    Partial Private Sub OnGages_Ref_OnlyChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGages_Ref_OnlyChanged()
+    End Sub
+    Partial Private Sub OnGages_Out_ServiceChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGages_Out_ServiceChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property id() As Integer
+		Get
+			Return Me._id
+		End Get
+		Set
+			If ((Me._id = value)  _
+						= false) Then
+				Me.OnidChanging(value)
+				Me.SendPropertyChanging
+				Me._id = value
+				Me.SendPropertyChanged("id")
+				Me.OnidChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="date", Storage:="_date", DbType:="Date NOT NULL")>  _
+	Public Property [date]() As Date
+		Get
+			Return Me._date
+		End Get
+		Set
+			If ((Me._date = value)  _
+						= false) Then
+				Me.OndateChanging(value)
+				Me.SendPropertyChanging
+				Me._date = value
+				Me.SendPropertyChanged("[date]")
+				Me.OndateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Gages_Due", DbType:="Int")>  _
+	Public Property Gages_Due() As System.Nullable(Of Integer)
+		Get
+			Return Me._Gages_Due
+		End Get
+		Set
+			If (Me._Gages_Due.Equals(value) = false) Then
+				Me.OnGages_DueChanging(value)
+				Me.SendPropertyChanging
+				Me._Gages_Due = value
+				Me.SendPropertyChanged("Gages_Due")
+				Me.OnGages_DueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Gages_Overdue", DbType:="Int")>  _
+	Public Property Gages_Overdue() As System.Nullable(Of Integer)
+		Get
+			Return Me._Gages_Overdue
+		End Get
+		Set
+			If (Me._Gages_Overdue.Equals(value) = false) Then
+				Me.OnGages_OverdueChanging(value)
+				Me.SendPropertyChanging
+				Me._Gages_Overdue = value
+				Me.SendPropertyChanged("Gages_Overdue")
+				Me.OnGages_OverdueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Gages_In_Service", DbType:="Int")>  _
+	Public Property Gages_In_Service() As System.Nullable(Of Integer)
+		Get
+			Return Me._Gages_In_Service
+		End Get
+		Set
+			If (Me._Gages_In_Service.Equals(value) = false) Then
+				Me.OnGages_In_ServiceChanging(value)
+				Me.SendPropertyChanging
+				Me._Gages_In_Service = value
+				Me.SendPropertyChanged("Gages_In_Service")
+				Me.OnGages_In_ServiceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Gages_Ref_Only", DbType:="Int")>  _
+	Public Property Gages_Ref_Only() As System.Nullable(Of Integer)
+		Get
+			Return Me._Gages_Ref_Only
+		End Get
+		Set
+			If (Me._Gages_Ref_Only.Equals(value) = false) Then
+				Me.OnGages_Ref_OnlyChanging(value)
+				Me.SendPropertyChanging
+				Me._Gages_Ref_Only = value
+				Me.SendPropertyChanged("Gages_Ref_Only")
+				Me.OnGages_Ref_OnlyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Gages_Out_Service", DbType:="Int")>  _
+	Public Property Gages_Out_Service() As System.Nullable(Of Integer)
+		Get
+			Return Me._Gages_Out_Service
+		End Get
+		Set
+			If (Me._Gages_Out_Service.Equals(value) = false) Then
+				Me.OnGages_Out_ServiceChanging(value)
+				Me.SendPropertyChanging
+				Me._Gages_Out_Service = value
+				Me.SendPropertyChanged("Gages_Out_Service")
+				Me.OnGages_Out_ServiceChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblSettings")>  _
@@ -2103,6 +2074,8 @@ Partial Public Class tblSetting
 	Private _SettingDescript As String
 	
 	Private _Encrypted As System.Nullable(Of Boolean)
+	
+	Private _AppName As String
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -2130,6 +2103,10 @@ Partial Public Class tblSetting
     Partial Private Sub OnEncryptedChanging(value As System.Nullable(Of Boolean))
     End Sub
     Partial Private Sub OnEncryptedChanged()
+    End Sub
+    Partial Private Sub OnAppNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnAppNameChanged()
     End Sub
     #End Region
 	
@@ -2215,6 +2192,1623 @@ Partial Public Class tblSetting
 				Me._Encrypted = value
 				Me.SendPropertyChanged("Encrypted")
 				Me.OnEncryptedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AppName", DbType:="VarChar(50)")>  _
+	Public Property AppName() As String
+		Get
+			Return Me._AppName
+		End Get
+		Set
+			If (String.Equals(Me._AppName, value) = false) Then
+				Me.OnAppNameChanging(value)
+				Me.SendPropertyChanging
+				Me._AppName = value
+				Me.SendPropertyChanged("AppName")
+				Me.OnAppNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageGroup")>  _
+Partial Public Class TblGageGroup
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _GageGroupID As String
+	
+	Private _GageGroupDesc As String
+	
+	Private _GageGroupOwner As String
+	
+	Private _GageGroupActive As System.Nullable(Of Boolean)
+	
+	Private _GageGroupDefaultLoc As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnGageGroupIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageGroupIDChanged()
+    End Sub
+    Partial Private Sub OnGageGroupDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageGroupDescChanged()
+    End Sub
+    Partial Private Sub OnGageGroupOwnerChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageGroupOwnerChanged()
+    End Sub
+    Partial Private Sub OnGageGroupActiveChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnGageGroupActiveChanged()
+    End Sub
+    Partial Private Sub OnGageGroupDefaultLocChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageGroupDefaultLocChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageGroupID", DbType:="VarChar(5) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property GageGroupID() As String
+		Get
+			Return Me._GageGroupID
+		End Get
+		Set
+			If (String.Equals(Me._GageGroupID, value) = false) Then
+				Me.OnGageGroupIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GageGroupID = value
+				Me.SendPropertyChanged("GageGroupID")
+				Me.OnGageGroupIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageGroupDesc", DbType:="VarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property GageGroupDesc() As String
+		Get
+			Return Me._GageGroupDesc
+		End Get
+		Set
+			If (String.Equals(Me._GageGroupDesc, value) = false) Then
+				Me.OnGageGroupDescChanging(value)
+				Me.SendPropertyChanging
+				Me._GageGroupDesc = value
+				Me.SendPropertyChanged("GageGroupDesc")
+				Me.OnGageGroupDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageGroupOwner", DbType:="VarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property GageGroupOwner() As String
+		Get
+			Return Me._GageGroupOwner
+		End Get
+		Set
+			If (String.Equals(Me._GageGroupOwner, value) = false) Then
+				Me.OnGageGroupOwnerChanging(value)
+				Me.SendPropertyChanging
+				Me._GageGroupOwner = value
+				Me.SendPropertyChanged("GageGroupOwner")
+				Me.OnGageGroupOwnerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageGroupActive", DbType:="Bit")>  _
+	Public Property GageGroupActive() As System.Nullable(Of Boolean)
+		Get
+			Return Me._GageGroupActive
+		End Get
+		Set
+			If (Me._GageGroupActive.Equals(value) = false) Then
+				Me.OnGageGroupActiveChanging(value)
+				Me.SendPropertyChanging
+				Me._GageGroupActive = value
+				Me.SendPropertyChanged("GageGroupActive")
+				Me.OnGageGroupActiveChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageGroupDefaultLoc", DbType:="VarChar(50)")>  _
+	Public Property GageGroupDefaultLoc() As String
+		Get
+			Return Me._GageGroupDefaultLoc
+		End Get
+		Set
+			If (String.Equals(Me._GageGroupDefaultLoc, value) = false) Then
+				Me.OnGageGroupDefaultLocChanging(value)
+				Me.SendPropertyChanging
+				Me._GageGroupDefaultLoc = value
+				Me.SendPropertyChanged("GageGroupDefaultLoc")
+				Me.OnGageGroupDefaultLocChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblGageCalMaster")>  _
+Partial Public Class tblGageCalMaster
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _GageID As String
+	
+	Private _Description As String
+	
+	Private _Manufacturer As String
+	
+	Private _Model_Serial As String
+	
+	Private _Details_Size As String
+	
+	Private _Accuracy As String
+	
+	Private _Location_Assignee As String
+	
+	Private _Status As String
+	
+	Private _Cal_Cycle As String
+	
+	Private _Cal_Instructions As String
+	
+	Private _GageNotes As String
+	
+	Private _DateDue As System.Nullable(Of Date)
+	
+	Private _GageType As String
+	
+	Private _LocEntityID As System.Nullable(Of Integer)
+	
+	Private _GageValdID As System.Nullable(Of Integer)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnGageIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageIDChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnManufacturerChanging(value As String)
+    End Sub
+    Partial Private Sub OnManufacturerChanged()
+    End Sub
+    Partial Private Sub OnModel_SerialChanging(value As String)
+    End Sub
+    Partial Private Sub OnModel_SerialChanged()
+    End Sub
+    Partial Private Sub OnDetails_SizeChanging(value As String)
+    End Sub
+    Partial Private Sub OnDetails_SizeChanged()
+    End Sub
+    Partial Private Sub OnAccuracyChanging(value As String)
+    End Sub
+    Partial Private Sub OnAccuracyChanged()
+    End Sub
+    Partial Private Sub OnLocation_AssigneeChanging(value As String)
+    End Sub
+    Partial Private Sub OnLocation_AssigneeChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As String)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnCal_CycleChanging(value As String)
+    End Sub
+    Partial Private Sub OnCal_CycleChanged()
+    End Sub
+    Partial Private Sub OnCal_InstructionsChanging(value As String)
+    End Sub
+    Partial Private Sub OnCal_InstructionsChanged()
+    End Sub
+    Partial Private Sub OnGageNotesChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageNotesChanged()
+    End Sub
+    Partial Private Sub OnDateDueChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnDateDueChanged()
+    End Sub
+    Partial Private Sub OnGageTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageTypeChanged()
+    End Sub
+    Partial Private Sub OnLocEntityIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnLocEntityIDChanged()
+    End Sub
+    Partial Private Sub OnGageValdIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnGageValdIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageID", DbType:="VarChar(20) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property GageID() As String
+		Get
+			Return Me._GageID
+		End Get
+		Set
+			If (String.Equals(Me._GageID, value) = false) Then
+				Me.OnGageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GageID = value
+				Me.SendPropertyChanged("GageID")
+				Me.OnGageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="VarChar(60)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Manufacturer", DbType:="VarChar(60)")>  _
+	Public Property Manufacturer() As String
+		Get
+			Return Me._Manufacturer
+		End Get
+		Set
+			If (String.Equals(Me._Manufacturer, value) = false) Then
+				Me.OnManufacturerChanging(value)
+				Me.SendPropertyChanging
+				Me._Manufacturer = value
+				Me.SendPropertyChanged("Manufacturer")
+				Me.OnManufacturerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Model_Serial", DbType:="VarChar(60)")>  _
+	Public Property Model_Serial() As String
+		Get
+			Return Me._Model_Serial
+		End Get
+		Set
+			If (String.Equals(Me._Model_Serial, value) = false) Then
+				Me.OnModel_SerialChanging(value)
+				Me.SendPropertyChanging
+				Me._Model_Serial = value
+				Me.SendPropertyChanged("Model_Serial")
+				Me.OnModel_SerialChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Details_Size", DbType:="VarChar(60)")>  _
+	Public Property Details_Size() As String
+		Get
+			Return Me._Details_Size
+		End Get
+		Set
+			If (String.Equals(Me._Details_Size, value) = false) Then
+				Me.OnDetails_SizeChanging(value)
+				Me.SendPropertyChanging
+				Me._Details_Size = value
+				Me.SendPropertyChanged("Details_Size")
+				Me.OnDetails_SizeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Accuracy", DbType:="VarChar(60)")>  _
+	Public Property Accuracy() As String
+		Get
+			Return Me._Accuracy
+		End Get
+		Set
+			If (String.Equals(Me._Accuracy, value) = false) Then
+				Me.OnAccuracyChanging(value)
+				Me.SendPropertyChanging
+				Me._Accuracy = value
+				Me.SendPropertyChanged("Accuracy")
+				Me.OnAccuracyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Location_Assignee", DbType:="VarChar(60)")>  _
+	Public Property Location_Assignee() As String
+		Get
+			Return Me._Location_Assignee
+		End Get
+		Set
+			If (String.Equals(Me._Location_Assignee, value) = false) Then
+				Me.OnLocation_AssigneeChanging(value)
+				Me.SendPropertyChanging
+				Me._Location_Assignee = value
+				Me.SendPropertyChanged("Location_Assignee")
+				Me.OnLocation_AssigneeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="VarChar(60)")>  _
+	Public Property Status() As String
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If (String.Equals(Me._Status, value) = false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cal_Cycle", DbType:="VarChar(20)")>  _
+	Public Property Cal_Cycle() As String
+		Get
+			Return Me._Cal_Cycle
+		End Get
+		Set
+			If (String.Equals(Me._Cal_Cycle, value) = false) Then
+				Me.OnCal_CycleChanging(value)
+				Me.SendPropertyChanging
+				Me._Cal_Cycle = value
+				Me.SendPropertyChanged("Cal_Cycle")
+				Me.OnCal_CycleChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cal_Instructions", DbType:="VarChar(MAX)")>  _
+	Public Property Cal_Instructions() As String
+		Get
+			Return Me._Cal_Instructions
+		End Get
+		Set
+			If (String.Equals(Me._Cal_Instructions, value) = false) Then
+				Me.OnCal_InstructionsChanging(value)
+				Me.SendPropertyChanging
+				Me._Cal_Instructions = value
+				Me.SendPropertyChanged("Cal_Instructions")
+				Me.OnCal_InstructionsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageNotes", DbType:="VarChar(MAX)")>  _
+	Public Property GageNotes() As String
+		Get
+			Return Me._GageNotes
+		End Get
+		Set
+			If (String.Equals(Me._GageNotes, value) = false) Then
+				Me.OnGageNotesChanging(value)
+				Me.SendPropertyChanging
+				Me._GageNotes = value
+				Me.SendPropertyChanged("GageNotes")
+				Me.OnGageNotesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateDue", DbType:="Date")>  _
+	Public Property DateDue() As System.Nullable(Of Date)
+		Get
+			Return Me._DateDue
+		End Get
+		Set
+			If (Me._DateDue.Equals(value) = false) Then
+				Me.OnDateDueChanging(value)
+				Me.SendPropertyChanging
+				Me._DateDue = value
+				Me.SendPropertyChanged("DateDue")
+				Me.OnDateDueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageType", DbType:="VarChar(20)")>  _
+	Public Property GageType() As String
+		Get
+			Return Me._GageType
+		End Get
+		Set
+			If (String.Equals(Me._GageType, value) = false) Then
+				Me.OnGageTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._GageType = value
+				Me.SendPropertyChanged("GageType")
+				Me.OnGageTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LocEntityID", DbType:="Int")>  _
+	Public Property LocEntityID() As System.Nullable(Of Integer)
+		Get
+			Return Me._LocEntityID
+		End Get
+		Set
+			If (Me._LocEntityID.Equals(value) = false) Then
+				Me.OnLocEntityIDChanging(value)
+				Me.SendPropertyChanging
+				Me._LocEntityID = value
+				Me.SendPropertyChanged("LocEntityID")
+				Me.OnLocEntityIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageValdID", DbType:="Int")>  _
+	Public Property GageValdID() As System.Nullable(Of Integer)
+		Get
+			Return Me._GageValdID
+		End Get
+		Set
+			If (Me._GageValdID.Equals(value) = false) Then
+				Me.OnGageValdIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GageValdID = value
+				Me.SendPropertyChanged("GageValdID")
+				Me.OnGageValdIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.tblCBOLists")>  _
+Partial Public Class tblCBOList
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _IDKey As Integer
+	
+	Private _cboID As Integer
+	
+	Private _SortOrd As Integer
+	
+	Private _ItemName As String
+	
+	Private _ListName As String
+	
+	Private _CanAdd As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDKeyChanged()
+    End Sub
+    Partial Private Sub OncboIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OncboIDChanged()
+    End Sub
+    Partial Private Sub OnSortOrdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSortOrdChanged()
+    End Sub
+    Partial Private Sub OnItemNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnItemNameChanged()
+    End Sub
+    Partial Private Sub OnListNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnListNameChanged()
+    End Sub
+    Partial Private Sub OnCanAddChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCanAddChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDKey", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property IDKey() As Integer
+		Get
+			Return Me._IDKey
+		End Get
+		Set
+			If ((Me._IDKey = value)  _
+						= false) Then
+				Me.OnIDKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._IDKey = value
+				Me.SendPropertyChanged("IDKey")
+				Me.OnIDKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_cboID", DbType:="Int NOT NULL")>  _
+	Public Property cboID() As Integer
+		Get
+			Return Me._cboID
+		End Get
+		Set
+			If ((Me._cboID = value)  _
+						= false) Then
+				Me.OncboIDChanging(value)
+				Me.SendPropertyChanging
+				Me._cboID = value
+				Me.SendPropertyChanged("cboID")
+				Me.OncboIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SortOrd", DbType:="Int NOT NULL")>  _
+	Public Property SortOrd() As Integer
+		Get
+			Return Me._SortOrd
+		End Get
+		Set
+			If ((Me._SortOrd = value)  _
+						= false) Then
+				Me.OnSortOrdChanging(value)
+				Me.SendPropertyChanging
+				Me._SortOrd = value
+				Me.SendPropertyChanged("SortOrd")
+				Me.OnSortOrdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ItemName", DbType:="VarChar(50)")>  _
+	Public Property ItemName() As String
+		Get
+			Return Me._ItemName
+		End Get
+		Set
+			If (String.Equals(Me._ItemName, value) = false) Then
+				Me.OnItemNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ItemName = value
+				Me.SendPropertyChanged("ItemName")
+				Me.OnItemNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ListName", DbType:="VarChar(50)")>  _
+	Public Property ListName() As String
+		Get
+			Return Me._ListName
+		End Get
+		Set
+			If (String.Equals(Me._ListName, value) = false) Then
+				Me.OnListNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ListName = value
+				Me.SendPropertyChanged("ListName")
+				Me.OnListNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CanAdd", DbType:="Bit NOT NULL")>  _
+	Public Property CanAdd() As Boolean
+		Get
+			Return Me._CanAdd
+		End Get
+		Set
+			If ((Me._CanAdd = value)  _
+						= false) Then
+				Me.OnCanAddChanging(value)
+				Me.SendPropertyChanging
+				Me._CanAdd = value
+				Me.SendPropertyChanged("CanAdd")
+				Me.OnCanAddChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdCrit")>  _
+Partial Public Class TblGageValdCrit
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CritID As Integer
+	
+	Private _GageTypeDesc As String
+	
+	Private _CriteriaSet As String
+	
+	Private _CriteriaDesc As String
+	
+	Private _ScaleDesc As String
+	
+	Private _TargetValue As String
+	
+	Private _TolType As String
+	
+	Private _UpperLimit As String
+	
+	Private _LowerLimit As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCritIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCritIDChanged()
+    End Sub
+    Partial Private Sub OnGageTypeDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageTypeDescChanged()
+    End Sub
+    Partial Private Sub OnCriteriaSetChanging(value As String)
+    End Sub
+    Partial Private Sub OnCriteriaSetChanged()
+    End Sub
+    Partial Private Sub OnCriteriaDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnCriteriaDescChanged()
+    End Sub
+    Partial Private Sub OnScaleDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnScaleDescChanged()
+    End Sub
+    Partial Private Sub OnTargetValueChanging(value As String)
+    End Sub
+    Partial Private Sub OnTargetValueChanged()
+    End Sub
+    Partial Private Sub OnTolTypeChanging(value As String)
+    End Sub
+    Partial Private Sub OnTolTypeChanged()
+    End Sub
+    Partial Private Sub OnUpperLimitChanging(value As String)
+    End Sub
+    Partial Private Sub OnUpperLimitChanged()
+    End Sub
+    Partial Private Sub OnLowerLimitChanging(value As String)
+    End Sub
+    Partial Private Sub OnLowerLimitChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CritID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property CritID() As Integer
+		Get
+			Return Me._CritID
+		End Get
+		Set
+			If ((Me._CritID = value)  _
+						= false) Then
+				Me.OnCritIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CritID = value
+				Me.SendPropertyChanged("CritID")
+				Me.OnCritIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageTypeDesc", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property GageTypeDesc() As String
+		Get
+			Return Me._GageTypeDesc
+		End Get
+		Set
+			If (String.Equals(Me._GageTypeDesc, value) = false) Then
+				Me.OnGageTypeDescChanging(value)
+				Me.SendPropertyChanging
+				Me._GageTypeDesc = value
+				Me.SendPropertyChanged("GageTypeDesc")
+				Me.OnGageTypeDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CriteriaSet", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property CriteriaSet() As String
+		Get
+			Return Me._CriteriaSet
+		End Get
+		Set
+			If (String.Equals(Me._CriteriaSet, value) = false) Then
+				Me.OnCriteriaSetChanging(value)
+				Me.SendPropertyChanging
+				Me._CriteriaSet = value
+				Me.SendPropertyChanged("CriteriaSet")
+				Me.OnCriteriaSetChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CriteriaDesc", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property CriteriaDesc() As String
+		Get
+			Return Me._CriteriaDesc
+		End Get
+		Set
+			If (String.Equals(Me._CriteriaDesc, value) = false) Then
+				Me.OnCriteriaDescChanging(value)
+				Me.SendPropertyChanging
+				Me._CriteriaDesc = value
+				Me.SendPropertyChanged("CriteriaDesc")
+				Me.OnCriteriaDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ScaleDesc", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property ScaleDesc() As String
+		Get
+			Return Me._ScaleDesc
+		End Get
+		Set
+			If (String.Equals(Me._ScaleDesc, value) = false) Then
+				Me.OnScaleDescChanging(value)
+				Me.SendPropertyChanging
+				Me._ScaleDesc = value
+				Me.SendPropertyChanged("ScaleDesc")
+				Me.OnScaleDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TargetValue", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property TargetValue() As String
+		Get
+			Return Me._TargetValue
+		End Get
+		Set
+			If (String.Equals(Me._TargetValue, value) = false) Then
+				Me.OnTargetValueChanging(value)
+				Me.SendPropertyChanging
+				Me._TargetValue = value
+				Me.SendPropertyChanged("TargetValue")
+				Me.OnTargetValueChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TolType", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property TolType() As String
+		Get
+			Return Me._TolType
+		End Get
+		Set
+			If (String.Equals(Me._TolType, value) = false) Then
+				Me.OnTolTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._TolType = value
+				Me.SendPropertyChanged("TolType")
+				Me.OnTolTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UpperLimit", DbType:="VarChar(20)")>  _
+	Public Property UpperLimit() As String
+		Get
+			Return Me._UpperLimit
+		End Get
+		Set
+			If (String.Equals(Me._UpperLimit, value) = false) Then
+				Me.OnUpperLimitChanging(value)
+				Me.SendPropertyChanging
+				Me._UpperLimit = value
+				Me.SendPropertyChanged("UpperLimit")
+				Me.OnUpperLimitChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LowerLimit", DbType:="VarChar(20)")>  _
+	Public Property LowerLimit() As String
+		Get
+			Return Me._LowerLimit
+		End Get
+		Set
+			If (String.Equals(Me._LowerLimit, value) = false) Then
+				Me.OnLowerLimitChanging(value)
+				Me.SendPropertyChanging
+				Me._LowerLimit = value
+				Me.SendPropertyChanged("LowerLimit")
+				Me.OnLowerLimitChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdEvntRslts")>  _
+Partial Public Class TblGageValdEvntRslt
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ResultsKey As Integer
+	
+	Private _EventKey As Integer
+	
+	Private _CritID As Integer
+	
+	Private _MeasuredRslt As String
+	
+	Private _PassFail As Boolean
+	
+	Private _RsltsComment As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnResultsKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnResultsKeyChanged()
+    End Sub
+    Partial Private Sub OnEventKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventKeyChanged()
+    End Sub
+    Partial Private Sub OnCritIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCritIDChanged()
+    End Sub
+    Partial Private Sub OnMeasuredRsltChanging(value As String)
+    End Sub
+    Partial Private Sub OnMeasuredRsltChanged()
+    End Sub
+    Partial Private Sub OnPassFailChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnPassFailChanged()
+    End Sub
+    Partial Private Sub OnRsltsCommentChanging(value As String)
+    End Sub
+    Partial Private Sub OnRsltsCommentChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ResultsKey", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ResultsKey() As Integer
+		Get
+			Return Me._ResultsKey
+		End Get
+		Set
+			If ((Me._ResultsKey = value)  _
+						= false) Then
+				Me.OnResultsKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._ResultsKey = value
+				Me.SendPropertyChanged("ResultsKey")
+				Me.OnResultsKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventKey", DbType:="Int NOT NULL")>  _
+	Public Property EventKey() As Integer
+		Get
+			Return Me._EventKey
+		End Get
+		Set
+			If ((Me._EventKey = value)  _
+						= false) Then
+				Me.OnEventKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._EventKey = value
+				Me.SendPropertyChanged("EventKey")
+				Me.OnEventKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CritID", DbType:="Int NOT NULL")>  _
+	Public Property CritID() As Integer
+		Get
+			Return Me._CritID
+		End Get
+		Set
+			If ((Me._CritID = value)  _
+						= false) Then
+				Me.OnCritIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CritID = value
+				Me.SendPropertyChanged("CritID")
+				Me.OnCritIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MeasuredRslt", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property MeasuredRslt() As String
+		Get
+			Return Me._MeasuredRslt
+		End Get
+		Set
+			If (String.Equals(Me._MeasuredRslt, value) = false) Then
+				Me.OnMeasuredRsltChanging(value)
+				Me.SendPropertyChanging
+				Me._MeasuredRslt = value
+				Me.SendPropertyChanged("MeasuredRslt")
+				Me.OnMeasuredRsltChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PassFail", DbType:="Bit NOT NULL")>  _
+	Public Property PassFail() As Boolean
+		Get
+			Return Me._PassFail
+		End Get
+		Set
+			If ((Me._PassFail = value)  _
+						= false) Then
+				Me.OnPassFailChanging(value)
+				Me.SendPropertyChanging
+				Me._PassFail = value
+				Me.SendPropertyChanged("PassFail")
+				Me.OnPassFailChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RsltsComment", DbType:="VarChar(MAX)")>  _
+	Public Property RsltsComment() As String
+		Get
+			Return Me._RsltsComment
+		End Get
+		Set
+			If (String.Equals(Me._RsltsComment, value) = false) Then
+				Me.OnRsltsCommentChanging(value)
+				Me.SendPropertyChanging
+				Me._RsltsComment = value
+				Me.SendPropertyChanged("RsltsComment")
+				Me.OnRsltsCommentChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdXColHdr")>  _
+Partial Public Class TblGageValdXColHdr
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _XColID As Integer
+	
+	Private _CriteriaSetDesc As String
+	
+	Private _ColName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnXColIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnXColIDChanged()
+    End Sub
+    Partial Private Sub OnCriteriaSetDescChanging(value As String)
+    End Sub
+    Partial Private Sub OnCriteriaSetDescChanged()
+    End Sub
+    Partial Private Sub OnColNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnColNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_XColID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property XColID() As Integer
+		Get
+			Return Me._XColID
+		End Get
+		Set
+			If ((Me._XColID = value)  _
+						= false) Then
+				Me.OnXColIDChanging(value)
+				Me.SendPropertyChanging
+				Me._XColID = value
+				Me.SendPropertyChanged("XColID")
+				Me.OnXColIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CriteriaSetDesc", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property CriteriaSetDesc() As String
+		Get
+			Return Me._CriteriaSetDesc
+		End Get
+		Set
+			If (String.Equals(Me._CriteriaSetDesc, value) = false) Then
+				Me.OnCriteriaSetDescChanging(value)
+				Me.SendPropertyChanging
+				Me._CriteriaSetDesc = value
+				Me.SendPropertyChanged("CriteriaSetDesc")
+				Me.OnCriteriaSetDescChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ColName", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property ColName() As String
+		Get
+			Return Me._ColName
+		End Get
+		Set
+			If (String.Equals(Me._ColName, value) = false) Then
+				Me.OnColNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ColName = value
+				Me.SendPropertyChanged("ColName")
+				Me.OnColNameChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdXColData")>  _
+Partial Public Class TblGageValdXColData
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _DataKey As Integer
+	
+	Private _EventKey As Integer
+	
+	Private _CritID As Integer
+	
+	Private _XColID As Integer
+	
+	Private _ColData As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnDataKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnDataKeyChanged()
+    End Sub
+    Partial Private Sub OnEventKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventKeyChanged()
+    End Sub
+    Partial Private Sub OnCritIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCritIDChanged()
+    End Sub
+    Partial Private Sub OnXColIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnXColIDChanged()
+    End Sub
+    Partial Private Sub OnColDataChanging(value As String)
+    End Sub
+    Partial Private Sub OnColDataChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DataKey", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property DataKey() As Integer
+		Get
+			Return Me._DataKey
+		End Get
+		Set
+			If ((Me._DataKey = value)  _
+						= false) Then
+				Me.OnDataKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._DataKey = value
+				Me.SendPropertyChanged("DataKey")
+				Me.OnDataKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventKey", DbType:="Int NOT NULL")>  _
+	Public Property EventKey() As Integer
+		Get
+			Return Me._EventKey
+		End Get
+		Set
+			If ((Me._EventKey = value)  _
+						= false) Then
+				Me.OnEventKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._EventKey = value
+				Me.SendPropertyChanged("EventKey")
+				Me.OnEventKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CritID", DbType:="Int NOT NULL")>  _
+	Public Property CritID() As Integer
+		Get
+			Return Me._CritID
+		End Get
+		Set
+			If ((Me._CritID = value)  _
+						= false) Then
+				Me.OnCritIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CritID = value
+				Me.SendPropertyChanged("CritID")
+				Me.OnCritIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_XColID", DbType:="Int NOT NULL")>  _
+	Public Property XColID() As Integer
+		Get
+			Return Me._XColID
+		End Get
+		Set
+			If ((Me._XColID = value)  _
+						= false) Then
+				Me.OnXColIDChanging(value)
+				Me.SendPropertyChanging
+				Me._XColID = value
+				Me.SendPropertyChanged("XColID")
+				Me.OnXColIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ColData", DbType:="VarChar(50)")>  _
+	Public Property ColData() As String
+		Get
+			Return Me._ColData
+		End Get
+		Set
+			If (String.Equals(Me._ColData, value) = false) Then
+				Me.OnColDataChanging(value)
+				Me.SendPropertyChanging
+				Me._ColData = value
+				Me.SendPropertyChanged("ColData")
+				Me.OnColDataChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdGagesUsed")>  _
+Partial Public Class TblGageValdGagesUsed
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _GVGUKey As Integer
+	
+	Private _EventKey As Integer
+	
+	Private _GageID As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnGVGUKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnGVGUKeyChanged()
+    End Sub
+    Partial Private Sub OnEventKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventKeyChanged()
+    End Sub
+    Partial Private Sub OnGageIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GVGUKey", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property GVGUKey() As Integer
+		Get
+			Return Me._GVGUKey
+		End Get
+		Set
+			If ((Me._GVGUKey = value)  _
+						= false) Then
+				Me.OnGVGUKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._GVGUKey = value
+				Me.SendPropertyChanged("GVGUKey")
+				Me.OnGVGUKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventKey", DbType:="Int NOT NULL")>  _
+	Public Property EventKey() As Integer
+		Get
+			Return Me._EventKey
+		End Get
+		Set
+			If ((Me._EventKey = value)  _
+						= false) Then
+				Me.OnEventKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._EventKey = value
+				Me.SendPropertyChanged("EventKey")
+				Me.OnEventKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageID", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property GageID() As String
+		Get
+			Return Me._GageID
+		End Get
+		Set
+			If (String.Equals(Me._GageID, value) = false) Then
+				Me.OnGageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GageID = value
+				Me.SendPropertyChanged("GageID")
+				Me.OnGageIDChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGageValdEvnts")>  _
+Partial Public Class TblGageValdEvnt
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _EventKey As Integer
+	
+	Private _GageID As String
+	
+	Private _GageValdDate As Date
+	
+	Private _EvntComments As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnEventKeyChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEventKeyChanged()
+    End Sub
+    Partial Private Sub OnGageIDChanging(value As String)
+    End Sub
+    Partial Private Sub OnGageIDChanged()
+    End Sub
+    Partial Private Sub OnGageValdDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnGageValdDateChanged()
+    End Sub
+    Partial Private Sub OnEvntCommentsChanging(value As String)
+    End Sub
+    Partial Private Sub OnEvntCommentsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EventKey", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property EventKey() As Integer
+		Get
+			Return Me._EventKey
+		End Get
+		Set
+			If ((Me._EventKey = value)  _
+						= false) Then
+				Me.OnEventKeyChanging(value)
+				Me.SendPropertyChanging
+				Me._EventKey = value
+				Me.SendPropertyChanged("EventKey")
+				Me.OnEventKeyChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageID", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property GageID() As String
+		Get
+			Return Me._GageID
+		End Get
+		Set
+			If (String.Equals(Me._GageID, value) = false) Then
+				Me.OnGageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GageID = value
+				Me.SendPropertyChanged("GageID")
+				Me.OnGageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GageValdDate", DbType:="Date NOT NULL")>  _
+	Public Property GageValdDate() As Date
+		Get
+			Return Me._GageValdDate
+		End Get
+		Set
+			If ((Me._GageValdDate = value)  _
+						= false) Then
+				Me.OnGageValdDateChanging(value)
+				Me.SendPropertyChanging
+				Me._GageValdDate = value
+				Me.SendPropertyChanged("GageValdDate")
+				Me.OnGageValdDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EvntComments", DbType:="VarChar(MAX)")>  _
+	Public Property EvntComments() As String
+		Get
+			Return Me._EvntComments
+		End Get
+		Set
+			If (String.Equals(Me._EvntComments, value) = false) Then
+				Me.OnEvntCommentsChanging(value)
+				Me.SendPropertyChanging
+				Me._EvntComments = value
+				Me.SendPropertyChanged("EvntComments")
+				Me.OnEvntCommentsChanged
 			End If
 		End Set
 	End Property
